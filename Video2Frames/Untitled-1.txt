@@ -1,0 +1,3621 @@
+(()=>{
+    var e, t = {
+        1112: (e,t,i)=>{
+            "use strict";
+            i.d(t, {
+                g: ()=>r
+            });
+            const r = new Map([["min", "ₘ"], ["maj", ""], ["dim", "ᵈⁱᵐ"], ["aug", "ᵃᵘᶢ"], ["maj7", "ᵐᵃʲ⁷"], ["min7", "ₘ⁷"], ["hdim7", "ₘ⁷𝄬⁵"], ["dim7", "ᵈⁱᵐ⁷"], ["minmaj7", "ₘᵐᵃʲ⁷"], ["aug7", "ᵃᵘᶢ⁷"], ["maj6", "ᵐᵃʲ⁶"], ["min6", "ₘ⁶"], ["maj9", "ᵐᵃʲ⁹"], ["min9", "ₘ⁹"], ["9", "⁹"], ["min11", "ₘ¹¹"], ["min13", "ₘ¹³"], ["maj13", "ᵐᵃʲ¹³"], ["sus4", "ˢᵘˢ⁴"], ["sus2", "ˢᵘˢ²"], ["7sus4", "⁷ˢᵘˢ⁴"], ["7(#9)", "⁷𝄰⁹"], ["7", "⁷"], ["5", "⁵"], ["11", "¹¹"], ["13", "¹³"], ["1", "¹"], ["b", "♭"], ["#", "♯"], ["add", "ᵃᵈᵈ"], ["no", "ⁿᵒ"], ["(", "⁽"], ["(", "⁾"], [",", "˒"], ["N", "𝄽"], ["/", "/"]])
+        }
+        ,
+        7142: (e,t,i)=>{
+            "use strict";
+            i.d(t, {
+                Cp: ()=>a,
+                QL: ()=>s,
+                Rw: ()=>n,
+                VQ: ()=>o,
+                XP: ()=>r,
+                ew: ()=>d,
+                mp: ()=>h
+            });
+            const r = {
+                maj: [["A", "#"], ["Bb", "b"], ["B", "#"], ["C", "#"], ["Db", "b"], ["D", "#"], ["Eb", "b"], ["E", "#"], ["F", "b"], ["F#", "#"], ["G", "#"], ["Ab", "b"]],
+                min: [["A", "#"], ["Bb", "b"], ["B", "#"], ["C", "b"], ["C#", "#"], ["D", "b"], ["Eb", "b"], ["E", "#"], ["F", "b"], ["F#", "#"], ["G", "b"], ["G#", "#"]]
+            }
+              , o = ["A", "Bb", "B", "C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab"]
+              , s = {
+                b: ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"],
+                "#": ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+            }
+              , n = ["maj", "min", "7", "maj7", "min7", "sus4", "5", "dim", "sus2", "7sus4", "9", "7(#9)", "min9", "maj9", "maj6", "min6", "hdim7", "aug"]
+              , a = {
+                latInverse: {
+                    Do: "C",
+                    Re: "D",
+                    Mi: "E",
+                    Fa: "F",
+                    Sol: "G",
+                    La: "A",
+                    Si: "B",
+                    N: "N"
+                },
+                latin: {
+                    C: "Do",
+                    D: "Re",
+                    E: "Mi",
+                    F: "Fa",
+                    G: "Sol",
+                    A: "La",
+                    B: "Si",
+                    N: "N"
+                }
+            }
+              , d = function() {
+                const e = {
+                    min: {},
+                    maj: {}
+                };
+                for (let t = 0; t < r.min.length; t++)
+                    e.min[r.min[t][0]] = t,
+                    e.maj[r.maj[t][0]] = t;
+                return e
+            }()
+              , h = function() {
+                const e = {};
+                for (let t = 0; t < s.b.length; t++)
+                    e[s.b[t]] = t,
+                    e[s["#"][t]] = t;
+                return e
+            }()
+        }
+        ,
+        1197: (e,t,i)=>{
+            "use strict";
+            i.d(t, {
+                Cx: ()=>g,
+                Er: ()=>y,
+                M0: ()=>l,
+                Uz: ()=>n,
+                YL: ()=>d,
+                aV: ()=>m,
+                dk: ()=>f,
+                u: ()=>v,
+                vr: ()=>c,
+                wX: ()=>p,
+                xU: ()=>h,
+                y8: ()=>u
+            });
+            var r = i(1112)
+              , o = i(7142)
+              , s = i(3731);
+            const n = e=>{
+                const t = e.split(a);
+                return {
+                    root: t[0],
+                    extension: t[1],
+                    bassNote: t[2] ? t[2] : void 0
+                }
+            }
+              , a = /\/|:/
+              , d = ({root: e, extension: t, bassNote: i})=>`${e}:${t}${void 0 !== i ? `/${i}` : ""}`
+              , h = (e,t)=>{
+                if ("N" === e)
+                    return {
+                        label: "𝄽"
+                    };
+                const [i,o,n] = e.split(a)
+                  , d = `${(void 0 === t || "english" === t ? i : (0,
+                s.Sx)(i, t)).replace("#", "♯").replace("b", "♭")}${r.g.get(o)}`;
+                return void 0 === n ? {
+                    label: d
+                } : {
+                    label: d,
+                    bass: `/${(void 0 === t || "english" === t ? n : (0,
+                    s.Sx)(n, t)).replace("#", "♯").replace("b", "♭")}`
+                }
+            }
+            ;
+            function l(e) {
+                switch (e) {
+                case "guitar":
+                    return "capoGuitar";
+                case "mandolin":
+                    return "capoMandolin";
+                case "ukulele":
+                    return "capoUkulele"
+                }
+            }
+            const c = (e,t=!1,i,r)=>{
+                const o = h(e, i)
+                  , s = $(`<div class="chord ${t ? " nolabel" : ""}"${void 0 !== r ? ` data-i="${r}"` : ""}><div class="label-wrapper"><span class="chord-label">${o.label}</span><span class="bass-label">${o.bass ?? ""}</span></div></div>`);
+                return s.data("handle", e),
+                s
+            }
+              , u = (e,t)=>void 0 === t ? e : o.QL[t][o.mp[e]]
+              , p = e=>{
+                if ("N" === e)
+                    return "N";
+                const t = n(e)
+                  , i = t.root[1] ?? t.bassNote?.[1];
+                if (void 0 !== i) {
+                    const e = "b" === i ? "#" : "b"
+                      , r = u(t.root, e)
+                      , o = t.bassNote
+                      , s = void 0 !== o ? u(o, e) : void 0;
+                    return d({
+                        root: r,
+                        extension: t.extension,
+                        bassNote: s
+                    })
+                }
+                return e
+            }
+              , f = ({extension: e, bassNote: t})=>("maj" === e || "min" === e) && void 0 === t
+              , y = (e,t)=>{
+                if ("N" === e)
+                    return !1;
+                if ("latin" !== t)
+                    return e.split("/")[0].length > 6;
+                const {root: i, extension: r} = n(e);
+                return (0,
+                s.m7)(i).length + r.length + 1 > 6
+            }
+              , g = e=>{
+                const t = e.split(";");
+                return {
+                    beat: parseInt(t[0], 10),
+                    from: parseFloat(t[2]),
+                    handle: t[1],
+                    to: parseFloat(t[3])
+                }
+            }
+              , v = e=>t=>e[t]
+              , m = e=>t=>{
+                if (0 === t.length)
+                    return;
+                const i = t.data("i");
+                return void 0 !== i ? v(e)(i) : void 0
+            }
+        }
+        ,
+        3731: (e,t,i)=>{
+            "use strict";
+            i.d(t, {
+                DT: ()=>h,
+                Gm: ()=>s,
+                S_: ()=>a,
+                Sx: ()=>n,
+                m7: ()=>o,
+                nG: ()=>d
+            });
+            var r = i(7142);
+            const o = e=>{
+                const t = e[0]
+                  , i = e[1];
+                return r.Cp.latin[t] + (i ?? "")
+            }
+              , s = e=>{
+                switch (e) {
+                case "Bb":
+                    return "B";
+                case "B":
+                    return "H";
+                default:
+                    return e
+                }
+            }
+              , n = (e,t)=>{
+                switch (t) {
+                case "english":
+                    return e;
+                case "german":
+                    return s(e);
+                case "latin":
+                    return o(e)
+                }
+            }
+              , a = (e,t)=>{
+                switch (t) {
+                case "english":
+                    return e;
+                case "german":
+                    return (e=>e.replace("B", "Bb").replace("H", "B"))(e);
+                case "latin":
+                    return (e=>{
+                        const t = r.Cp.latInverse[e.replace(/(.+)b|#/, "$1")];
+                        return void 0 === t ? null : t + (e.match(/b|#/) ?? " ")[0].trim()
+                    }
+                    )(e)
+                }
+            }
+              , d = e=>t=>['<div class="function-edit function-editdelete"><button class="edit-delete"><div class="control-top icon-close"></div></button></div>', `<div class="function-edit"><button class="sharp-flat"><div class="control-top value">&#9839;/&#9837;</div><div class="control-label">${e.sharp_flat}</div></button></div>`, `<div class="function-edit"><button class="barlength"><div class="control-top value">${t.barLength}/4</div><div class="control-label">${e.meter}</div></button></div>`, `<div class="function-edit function-shift"><div class="control-top"><button class="icon-caret-left"></button><button class="value">${t.anacrusisPadding ?? 0}</button><button class="icon-caret-right"></button></div><div class="control-label">${e.shift_chords}</div></div>`, `<div class="function-edit function-select"><button class="select"><div class="control-top icon-rename"></div><div class="control-label">${e.select_button}</div></button></div>`]
+              , h = e=>t=>{
+                const i = "OSX" === t ? "&#x2318;" : "ctrl";
+                return `<div class="chord-edit-tooltip"><span class="icon-edit" title="${e.edit_this_chord}"></span><div class="chord-edit-move"><span class="icon-caret-left" title="${e.edit_move_left} (${i} + &#11013;)"></span><span class="icon-caret-right" title="${e.edit_move_right} (${i} + &#10145;)"></span><span class="icon-delete" title="${e.remove_chord}"></span><span class="icon-paste" title="Select multiple chords to copy and paste"></span></div><div class="chord-edit-search"><p class="search-title" title="${e.edit_explain_rootnote}">${e.edit_rootnote}</p><input class="chord-search-input search-root" type="text"/><p>-</p><p class="search-title">${e.edit_chordtype}</p><input class="chord-search-input search-extension" type="text"/><p>/</p><p class="search-title">${e.edit_bassnote}</p><input class="chord-search-input search-bassNote" type="text"></input><span class="icon-check" title="${e.edit_save_chord}"></span><div class="chord-search-lists"></div></div></div>`
+            }
+        }
+        ,
+        6538: (e,t,i)=>{
+            "use strict";
+            function r(e, t, i) {
+                return function(e, t) {
+                    if (e !== t)
+                        throw new TypeError("Private static access of wrong provenance")
+                }(e, t),
+                function(e, t) {
+                    if (void 0 === e)
+                        throw new TypeError("attempted to get private static field before its declaration")
+                }(i),
+                function(e, t) {
+                    return t.get ? t.get.call(e) : t.value
+                }(e, i)
+            }
+            i.d(t, {
+                Ds: ()=>o,
+                RQ: ()=>a,
+                XX: ()=>n,
+                re: ()=>s
+            });
+            const o = (e,t,i)=>{
+                let r;
+                return i ? (...i)=>{
+                    void 0 === r ? (e(...i),
+                    r = setTimeout((()=>{
+                        r = void 0
+                    }
+                    ), t)) : (clearTimeout(r),
+                    r = setTimeout((()=>{
+                        r = void 0,
+                        e(...i)
+                    }
+                    ), t))
+                }
+                : (...i)=>{
+                    void 0 !== r && clearTimeout(r),
+                    r = setTimeout((()=>{
+                        r = void 0,
+                        e(...i)
+                    }
+                    ), t)
+                }
+            }
+              , s = (e,t,i=0)=>{
+                const r = Math.min(t, i)
+                  , o = Math.max(t, i)
+                  , s = (e - r) % (o - r + 1);
+                return s >= 0 ? r + s : o + s + 1
+            }
+              , n = (e,t)=>{
+                void 0 === t && (t = location.search),
+                e = e.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
+                const i = new RegExp(`[\\?&]${e}=([^&#]*)`).exec(t);
+                return null != i && decodeURIComponent(i[1].replace(/\+/g, " "))
+            }
+            ;
+            class a {
+                static getById(e) {
+                    return r(this, a, d).has(e) || r(this, a, d).set(e, document.getElementById(e)),
+                    r(this, a, d).get(e) ?? null
+                }
+                static invalidate(e) {
+                    r(this, a, d).delete(e)
+                }
+            }
+            var d = {
+                writable: !0,
+                value: new Map
+            }
+        }
+        ,
+        5089: (e,t,i)=>{
+            var r = i(930)
+              , o = i(9268)
+              , s = TypeError;
+            e.exports = function(e) {
+                if (r(e))
+                    return e;
+                throw s(o(e) + " is not a function")
+            }
+        }
+        ,
+        6112: (e,t,i)=>{
+            var r = i(8759)
+              , o = String
+              , s = TypeError;
+            e.exports = function(e) {
+                if (r(e))
+                    return e;
+                throw s(o(e) + " is not an object")
+            }
+        }
+        ,
+        6198: (e,t,i)=>{
+            var r = i(4088)
+              , o = i(7740)
+              , s = i(2871)
+              , n = function(e) {
+                return function(t, i, n) {
+                    var a, d = r(t), h = s(d), l = o(n, h);
+                    if (e && i != i) {
+                        for (; h > l; )
+                            if ((a = d[l++]) != a)
+                                return !0
+                    } else
+                        for (; h > l; l++)
+                            if ((e || l in d) && d[l] === i)
+                                return e || l || 0;
+                    return !e && -1
+                }
+            };
+            e.exports = {
+                includes: n(!0),
+                indexOf: n(!1)
+            }
+        }
+        ,
+        2306: (e,t,i)=>{
+            var r = i(8240)
+              , o = r({}.toString)
+              , s = r("".slice);
+            e.exports = function(e) {
+                return s(o(e), 8, -1)
+            }
+        }
+        ,
+        8474: (e,t,i)=>{
+            var r = i(9606)
+              , o = i(6095)
+              , s = i(4399)
+              , n = i(7826);
+            e.exports = function(e, t, i) {
+                for (var a = o(t), d = n.f, h = s.f, l = 0; l < a.length; l++) {
+                    var c = a[l];
+                    r(e, c) || i && r(i, c) || d(e, c, h(t, c))
+                }
+            }
+        }
+        ,
+        2585: (e,t,i)=>{
+            var r = i(5283)
+              , o = i(7826)
+              , s = i(5736);
+            e.exports = r ? function(e, t, i) {
+                return o.f(e, t, s(1, i))
+            }
+            : function(e, t, i) {
+                return e[t] = i,
+                e
+            }
+        }
+        ,
+        5736: e=>{
+            e.exports = function(e, t) {
+                return {
+                    enumerable: !(1 & e),
+                    configurable: !(2 & e),
+                    writable: !(4 & e),
+                    value: t
+                }
+            }
+        }
+        ,
+        1343: (e,t,i)=>{
+            var r = i(930)
+              , o = i(7826)
+              , s = i(3712)
+              , n = i(9444);
+            e.exports = function(e, t, i, a) {
+                a || (a = {});
+                var d = a.enumerable
+                  , h = void 0 !== a.name ? a.name : t;
+                return r(i) && s(i, h, a),
+                a.global ? d ? e[t] = i : n(t, i) : (a.unsafe ? e[t] && (d = !0) : delete e[t],
+                d ? e[t] = i : o.f(e, t, {
+                    value: i,
+                    enumerable: !1,
+                    configurable: !a.nonConfigurable,
+                    writable: !a.nonWritable
+                })),
+                e
+            }
+        }
+        ,
+        9444: (e,t,i)=>{
+            var r = i(2086)
+              , o = Object.defineProperty;
+            e.exports = function(e, t) {
+                try {
+                    o(r, e, {
+                        value: t,
+                        configurable: !0,
+                        writable: !0
+                    })
+                } catch (i) {
+                    r[e] = t
+                }
+                return t
+            }
+        }
+        ,
+        5283: (e,t,i)=>{
+            var r = i(3677);
+            e.exports = !r((function() {
+                return 7 != Object.defineProperty({}, 1, {
+                    get: function() {
+                        return 7
+                    }
+                })[1]
+            }
+            ))
+        }
+        ,
+        821: (e,t,i)=>{
+            var r = i(2086)
+              , o = i(8759)
+              , s = r.document
+              , n = o(s) && o(s.createElement);
+            e.exports = function(e) {
+                return n ? s.createElement(e) : {}
+            }
+        }
+        ,
+        7620: e=>{
+            var t = TypeError;
+            e.exports = function(e) {
+                if (e > 9007199254740991)
+                    throw t("Maximum allowed index exceeded");
+                return e
+            }
+        }
+        ,
+        4999: (e,t,i)=>{
+            var r = i(563);
+            e.exports = r("navigator", "userAgent") || ""
+        }
+        ,
+        1448: (e,t,i)=>{
+            var r, o, s = i(2086), n = i(4999), a = s.process, d = s.Deno, h = a && a.versions || d && d.version, l = h && h.v8;
+            l && (o = (r = l.split("."))[0] > 0 && r[0] < 4 ? 1 : +(r[0] + r[1])),
+            !o && n && (!(r = n.match(/Edge\/(\d+)/)) || r[1] >= 74) && (r = n.match(/Chrome\/(\d+)/)) && (o = +r[1]),
+            e.exports = o
+        }
+        ,
+        8684: e=>{
+            e.exports = ["constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"]
+        }
+        ,
+        1695: (e,t,i)=>{
+            var r = i(2086)
+              , o = i(4399).f
+              , s = i(2585)
+              , n = i(1343)
+              , a = i(9444)
+              , d = i(8474)
+              , h = i(7189);
+            e.exports = function(e, t) {
+                var i, l, c, u, p, f = e.target, y = e.global, g = e.stat;
+                if (i = y ? r : g ? r[f] || a(f, {}) : (r[f] || {}).prototype)
+                    for (l in t) {
+                        if (u = t[l],
+                        c = e.dontCallGetSet ? (p = o(i, l)) && p.value : i[l],
+                        !h(y ? l : f + (g ? "." : "#") + l, e.forced) && void 0 !== c) {
+                            if (typeof u == typeof c)
+                                continue;
+                            d(u, c)
+                        }
+                        (e.sham || c && c.sham) && s(u, "sham", !0),
+                        n(i, l, u, e)
+                    }
+            }
+        }
+        ,
+        3677: e=>{
+            e.exports = function(e) {
+                try {
+                    return !!e()
+                } catch (e) {
+                    return !0
+                }
+            }
+        }
+        ,
+        6059: (e,t,i)=>{
+            var r = i(3677);
+            e.exports = !r((function() {
+                var e = function() {}
+                .bind();
+                return "function" != typeof e || e.hasOwnProperty("prototype")
+            }
+            ))
+        }
+        ,
+        9413: (e,t,i)=>{
+            var r = i(6059)
+              , o = Function.prototype.call;
+            e.exports = r ? o.bind(o) : function() {
+                return o.apply(o, arguments)
+            }
+        }
+        ,
+        4398: (e,t,i)=>{
+            var r = i(5283)
+              , o = i(9606)
+              , s = Function.prototype
+              , n = r && Object.getOwnPropertyDescriptor
+              , a = o(s, "name")
+              , d = a && "something" === function() {}
+            .name
+              , h = a && (!r || r && n(s, "name").configurable);
+            e.exports = {
+                EXISTS: a,
+                PROPER: d,
+                CONFIGURABLE: h
+            }
+        }
+        ,
+        8240: (e,t,i)=>{
+            var r = i(6059)
+              , o = Function.prototype
+              , s = o.bind
+              , n = o.call
+              , a = r && s.bind(n, n);
+            e.exports = r ? function(e) {
+                return e && a(e)
+            }
+            : function(e) {
+                return e && function() {
+                    return n.apply(e, arguments)
+                }
+            }
+        }
+        ,
+        563: (e,t,i)=>{
+            var r = i(2086)
+              , o = i(930);
+            e.exports = function(e, t) {
+                return arguments.length < 2 ? (i = r[e],
+                o(i) ? i : void 0) : r[e] && r[e][t];
+                var i
+            }
+        }
+        ,
+        2964: (e,t,i)=>{
+            var r = i(5089);
+            e.exports = function(e, t) {
+                var i = e[t];
+                return null == i ? void 0 : r(i)
+            }
+        }
+        ,
+        2086: (e,t,i)=>{
+            var r = function(e) {
+                return e && e.Math == Math && e
+            };
+            e.exports = r("object" == typeof globalThis && globalThis) || r("object" == typeof window && window) || r("object" == typeof self && self) || r("object" == typeof i.g && i.g) || function() {
+                return this
+            }() || Function("return this")()
+        }
+        ,
+        9606: (e,t,i)=>{
+            var r = i(8240)
+              , o = i(3060)
+              , s = r({}.hasOwnProperty);
+            e.exports = Object.hasOwn || function(e, t) {
+                return s(o(e), t)
+            }
+        }
+        ,
+        7153: e=>{
+            e.exports = {}
+        }
+        ,
+        6761: (e,t,i)=>{
+            var r = i(5283)
+              , o = i(3677)
+              , s = i(821);
+            e.exports = !r && !o((function() {
+                return 7 != Object.defineProperty(s("div"), "a", {
+                    get: function() {
+                        return 7
+                    }
+                }).a
+            }
+            ))
+        }
+        ,
+        5974: (e,t,i)=>{
+            var r = i(8240)
+              , o = i(3677)
+              , s = i(2306)
+              , n = Object
+              , a = r("".split);
+            e.exports = o((function() {
+                return !n("z").propertyIsEnumerable(0)
+            }
+            )) ? function(e) {
+                return "String" == s(e) ? a(e, "") : n(e)
+            }
+            : n
+        }
+        ,
+        9277: (e,t,i)=>{
+            var r = i(8240)
+              , o = i(930)
+              , s = i(4489)
+              , n = r(Function.toString);
+            o(s.inspectSource) || (s.inspectSource = function(e) {
+                return n(e)
+            }
+            ),
+            e.exports = s.inspectSource
+        }
+        ,
+        3278: (e,t,i)=>{
+            var r, o, s, n = i(9316), a = i(2086), d = i(8240), h = i(8759), l = i(2585), c = i(9606), u = i(4489), p = i(8944), f = i(7153), y = "Object already initialized", g = a.TypeError, v = a.WeakMap;
+            if (n || u.state) {
+                var m = u.state || (u.state = new v)
+                  , C = d(m.get)
+                  , b = d(m.has)
+                  , w = d(m.set);
+                r = function(e, t) {
+                    if (b(m, e))
+                        throw new g(y);
+                    return t.facade = e,
+                    w(m, e, t),
+                    t
+                }
+                ,
+                o = function(e) {
+                    return C(m, e) || {}
+                }
+                ,
+                s = function(e) {
+                    return b(m, e)
+                }
+            } else {
+                var S = p("state");
+                f[S] = !0,
+                r = function(e, t) {
+                    if (c(e, S))
+                        throw new g(y);
+                    return t.facade = e,
+                    l(e, S, t),
+                    t
+                }
+                ,
+                o = function(e) {
+                    return c(e, S) ? e[S] : {}
+                }
+                ,
+                s = function(e) {
+                    return c(e, S)
+                }
+            }
+            e.exports = {
+                set: r,
+                get: o,
+                has: s,
+                enforce: function(e) {
+                    return s(e) ? o(e) : r(e, {})
+                },
+                getterFor: function(e) {
+                    return function(t) {
+                        var i;
+                        if (!h(t) || (i = o(t)).type !== e)
+                            throw g("Incompatible receiver, " + e + " required");
+                        return i
+                    }
+                }
+            }
+        }
+        ,
+        930: e=>{
+            e.exports = function(e) {
+                return "function" == typeof e
+            }
+        }
+        ,
+        7189: (e,t,i)=>{
+            var r = i(3677)
+              , o = i(930)
+              , s = /#|\.prototype\./
+              , n = function(e, t) {
+                var i = d[a(e)];
+                return i == l || i != h && (o(t) ? r(t) : !!t)
+            }
+              , a = n.normalize = function(e) {
+                return String(e).replace(s, ".").toLowerCase()
+            }
+              , d = n.data = {}
+              , h = n.NATIVE = "N"
+              , l = n.POLYFILL = "P";
+            e.exports = n
+        }
+        ,
+        8759: (e,t,i)=>{
+            var r = i(930);
+            e.exports = function(e) {
+                return "object" == typeof e ? null !== e : r(e)
+            }
+        }
+        ,
+        3296: e=>{
+            e.exports = !1
+        }
+        ,
+        2071: (e,t,i)=>{
+            var r = i(563)
+              , o = i(930)
+              , s = i(5516)
+              , n = i(1876)
+              , a = Object;
+            e.exports = n ? function(e) {
+                return "symbol" == typeof e
+            }
+            : function(e) {
+                var t = r("Symbol");
+                return o(t) && s(t.prototype, a(e))
+            }
+        }
+        ,
+        2871: (e,t,i)=>{
+            var r = i(4005);
+            e.exports = function(e) {
+                return r(e.length)
+            }
+        }
+        ,
+        3712: (e,t,i)=>{
+            var r = i(3677)
+              , o = i(930)
+              , s = i(9606)
+              , n = i(5283)
+              , a = i(4398).CONFIGURABLE
+              , d = i(9277)
+              , h = i(3278)
+              , l = h.enforce
+              , c = h.get
+              , u = Object.defineProperty
+              , p = n && !r((function() {
+                return 8 !== u((function() {}
+                ), "length", {
+                    value: 8
+                }).length
+            }
+            ))
+              , f = String(String).split("String")
+              , y = e.exports = function(e, t, i) {
+                "Symbol(" === String(t).slice(0, 7) && (t = "[" + String(t).replace(/^Symbol\(([^)]*)\)/, "$1") + "]"),
+                i && i.getter && (t = "get " + t),
+                i && i.setter && (t = "set " + t),
+                (!s(e, "name") || a && e.name !== t) && u(e, "name", {
+                    value: t,
+                    configurable: !0
+                }),
+                p && i && s(i, "arity") && e.length !== i.arity && u(e, "length", {
+                    value: i.arity
+                });
+                try {
+                    i && s(i, "constructor") && i.constructor ? n && u(e, "prototype", {
+                        writable: !1
+                    }) : e.prototype && (e.prototype = void 0)
+                } catch (e) {}
+                var r = l(e);
+                return s(r, "source") || (r.source = f.join("string" == typeof t ? t : "")),
+                e
+            }
+            ;
+            Function.prototype.toString = y((function() {
+                return o(this) && c(this).source || d(this)
+            }
+            ), "toString")
+        }
+        ,
+        5681: e=>{
+            var t = Math.ceil
+              , i = Math.floor;
+            e.exports = Math.trunc || function(e) {
+                var r = +e;
+                return (r > 0 ? i : t)(r)
+            }
+        }
+        ,
+        3193: (e,t,i)=>{
+            var r = i(1448)
+              , o = i(3677);
+            e.exports = !!Object.getOwnPropertySymbols && !o((function() {
+                var e = Symbol();
+                return !String(e) || !(Object(e)instanceof Symbol) || !Symbol.sham && r && r < 41
+            }
+            ))
+        }
+        ,
+        9316: (e,t,i)=>{
+            var r = i(2086)
+              , o = i(930)
+              , s = i(9277)
+              , n = r.WeakMap;
+            e.exports = o(n) && /native code/.test(s(n))
+        }
+        ,
+        7826: (e,t,i)=>{
+            var r = i(5283)
+              , o = i(6761)
+              , s = i(8202)
+              , n = i(6112)
+              , a = i(2258)
+              , d = TypeError
+              , h = Object.defineProperty
+              , l = Object.getOwnPropertyDescriptor
+              , c = "enumerable"
+              , u = "configurable"
+              , p = "writable";
+            t.f = r ? s ? function(e, t, i) {
+                if (n(e),
+                t = a(t),
+                n(i),
+                "function" == typeof e && "prototype" === t && "value"in i && p in i && !i[p]) {
+                    var r = l(e, t);
+                    r && r[p] && (e[t] = i.value,
+                    i = {
+                        configurable: u in i ? i[u] : r[u],
+                        enumerable: c in i ? i[c] : r[c],
+                        writable: !1
+                    })
+                }
+                return h(e, t, i)
+            }
+            : h : function(e, t, i) {
+                if (n(e),
+                t = a(t),
+                n(i),
+                o)
+                    try {
+                        return h(e, t, i)
+                    } catch (e) {}
+                if ("get"in i || "set"in i)
+                    throw d("Accessors not supported");
+                return "value"in i && (e[t] = i.value),
+                e
+            }
+        }
+        ,
+        4399: (e,t,i)=>{
+            var r = i(5283)
+              , o = i(9413)
+              , s = i(7446)
+              , n = i(5736)
+              , a = i(4088)
+              , d = i(2258)
+              , h = i(9606)
+              , l = i(6761)
+              , c = Object.getOwnPropertyDescriptor;
+            t.f = r ? c : function(e, t) {
+                if (e = a(e),
+                t = d(t),
+                l)
+                    try {
+                        return c(e, t)
+                    } catch (e) {}
+                if (h(e, t))
+                    return n(!o(s.f, e, t), e[t])
+            }
+        }
+        ,
+        62: (e,t,i)=>{
+            var r = i(1352)
+              , o = i(8684).concat("length", "prototype");
+            t.f = Object.getOwnPropertyNames || function(e) {
+                return r(e, o)
+            }
+        }
+        ,
+        6952: (e,t)=>{
+            t.f = Object.getOwnPropertySymbols
+        }
+        ,
+        5516: (e,t,i)=>{
+            var r = i(8240);
+            e.exports = r({}.isPrototypeOf)
+        }
+        ,
+        1352: (e,t,i)=>{
+            var r = i(8240)
+              , o = i(9606)
+              , s = i(4088)
+              , n = i(6198).indexOf
+              , a = i(7153)
+              , d = r([].push);
+            e.exports = function(e, t) {
+                var i, r = s(e), h = 0, l = [];
+                for (i in r)
+                    !o(a, i) && o(r, i) && d(l, i);
+                for (; t.length > h; )
+                    o(r, i = t[h++]) && (~n(l, i) || d(l, i));
+                return l
+            }
+        }
+        ,
+        7446: (e,t)=>{
+            "use strict";
+            var i = {}.propertyIsEnumerable
+              , r = Object.getOwnPropertyDescriptor
+              , o = r && !i.call({
+                1: 2
+            }, 1);
+            t.f = o ? function(e) {
+                var t = r(this, e);
+                return !!t && t.enumerable
+            }
+            : i
+        }
+        ,
+        7999: (e,t,i)=>{
+            var r = i(9413)
+              , o = i(930)
+              , s = i(8759)
+              , n = TypeError;
+            e.exports = function(e, t) {
+                var i, a;
+                if ("string" === t && o(i = e.toString) && !s(a = r(i, e)))
+                    return a;
+                if (o(i = e.valueOf) && !s(a = r(i, e)))
+                    return a;
+                if ("string" !== t && o(i = e.toString) && !s(a = r(i, e)))
+                    return a;
+                throw n("Can't convert object to primitive value")
+            }
+        }
+        ,
+        6095: (e,t,i)=>{
+            var r = i(563)
+              , o = i(8240)
+              , s = i(62)
+              , n = i(6952)
+              , a = i(6112)
+              , d = o([].concat);
+            e.exports = r("Reflect", "ownKeys") || function(e) {
+                var t = s.f(a(e))
+                  , i = n.f;
+                return i ? d(t, i(e)) : t
+            }
+        }
+        ,
+        9586: e=>{
+            var t = TypeError;
+            e.exports = function(e) {
+                if (null == e)
+                    throw t("Can't call method on " + e);
+                return e
+            }
+        }
+        ,
+        8944: (e,t,i)=>{
+            var r = i(9197)
+              , o = i(5422)
+              , s = r("keys");
+            e.exports = function(e) {
+                return s[e] || (s[e] = o(e))
+            }
+        }
+        ,
+        4489: (e,t,i)=>{
+            var r = i(2086)
+              , o = i(9444)
+              , s = "__core-js_shared__"
+              , n = r[s] || o(s, {});
+            e.exports = n
+        }
+        ,
+        9197: (e,t,i)=>{
+            var r = i(3296)
+              , o = i(4489);
+            (e.exports = function(e, t) {
+                return o[e] || (o[e] = void 0 !== t ? t : {})
+            }
+            )("versions", []).push({
+                version: "3.23.2",
+                mode: r ? "pure" : "global",
+                copyright: "© 2014-2022 Denis Pushkarev (zloirock.ru)",
+                license: "https://github.com/zloirock/core-js/blob/v3.23.2/LICENSE",
+                source: "https://github.com/zloirock/core-js"
+            })
+        }
+        ,
+        7740: (e,t,i)=>{
+            var r = i(9502)
+              , o = Math.max
+              , s = Math.min;
+            e.exports = function(e, t) {
+                var i = r(e);
+                return i < 0 ? o(i + t, 0) : s(i, t)
+            }
+        }
+        ,
+        4088: (e,t,i)=>{
+            var r = i(5974)
+              , o = i(9586);
+            e.exports = function(e) {
+                return r(o(e))
+            }
+        }
+        ,
+        9502: (e,t,i)=>{
+            var r = i(5681);
+            e.exports = function(e) {
+                var t = +e;
+                return t != t || 0 === t ? 0 : r(t)
+            }
+        }
+        ,
+        4005: (e,t,i)=>{
+            var r = i(9502)
+              , o = Math.min;
+            e.exports = function(e) {
+                return e > 0 ? o(r(e), 9007199254740991) : 0
+            }
+        }
+        ,
+        3060: (e,t,i)=>{
+            var r = i(9586)
+              , o = Object;
+            e.exports = function(e) {
+                return o(r(e))
+            }
+        }
+        ,
+        1288: (e,t,i)=>{
+            var r = i(9413)
+              , o = i(8759)
+              , s = i(2071)
+              , n = i(2964)
+              , a = i(7999)
+              , d = i(211)
+              , h = TypeError
+              , l = d("toPrimitive");
+            e.exports = function(e, t) {
+                if (!o(e) || s(e))
+                    return e;
+                var i, d = n(e, l);
+                if (d) {
+                    if (void 0 === t && (t = "default"),
+                    i = r(d, e, t),
+                    !o(i) || s(i))
+                        return i;
+                    throw h("Can't convert object to primitive value")
+                }
+                return void 0 === t && (t = "number"),
+                a(e, t)
+            }
+        }
+        ,
+        2258: (e,t,i)=>{
+            var r = i(1288)
+              , o = i(2071);
+            e.exports = function(e) {
+                var t = r(e, "string");
+                return o(t) ? t : t + ""
+            }
+        }
+        ,
+        9268: e=>{
+            var t = String;
+            e.exports = function(e) {
+                try {
+                    return t(e)
+                } catch (e) {
+                    return "Object"
+                }
+            }
+        }
+        ,
+        5422: (e,t,i)=>{
+            var r = i(8240)
+              , o = 0
+              , s = Math.random()
+              , n = r(1..toString);
+            e.exports = function(e) {
+                return "Symbol(" + (void 0 === e ? "" : e) + ")_" + n(++o + s, 36)
+            }
+        }
+        ,
+        1876: (e,t,i)=>{
+            var r = i(3193);
+            e.exports = r && !Symbol.sham && "symbol" == typeof Symbol.iterator
+        }
+        ,
+        8202: (e,t,i)=>{
+            var r = i(5283)
+              , o = i(3677);
+            e.exports = r && o((function() {
+                return 42 != Object.defineProperty((function() {}
+                ), "prototype", {
+                    value: 42,
+                    writable: !1
+                }).prototype
+            }
+            ))
+        }
+        ,
+        211: (e,t,i)=>{
+            var r = i(2086)
+              , o = i(9197)
+              , s = i(9606)
+              , n = i(5422)
+              , a = i(3193)
+              , d = i(1876)
+              , h = o("wks")
+              , l = r.Symbol
+              , c = l && l.for
+              , u = d ? l : l && l.withoutSetter || n;
+            e.exports = function(e) {
+                if (!s(h, e) || !a && "string" != typeof h[e]) {
+                    var t = "Symbol." + e;
+                    a && s(l, e) ? h[e] = l[e] : h[e] = d && c ? c(t) : u(t)
+                }
+                return h[e]
+            }
+        }
+        ,
+        5988: (e,t,i)=>{
+            "use strict";
+            var r = i(1695)
+              , o = i(3060)
+              , s = i(2871)
+              , n = i(7620)
+              , a = i(3677)((function() {
+                return 4294967297 !== [].push.call({
+                    length: 4294967296
+                }, 1)
+            }
+            ))
+              , d = !function() {
+                try {
+                    Object.defineProperty([], "length", {
+                        writable: !1
+                    }).push()
+                } catch (e) {
+                    return e instanceof TypeError
+                }
+            }();
+            r({
+                target: "Array",
+                proto: !0,
+                arity: 1,
+                forced: a || d
+            }, {
+                push: function(e) {
+                    var t = o(this)
+                      , i = s(t)
+                      , r = arguments.length;
+                    n(i + r);
+                    for (var a = 0; a < r; a++)
+                        t[i] = arguments[a],
+                        i++;
+                    return t.length = i,
+                    i
+                }
+            })
+        }
+    }, i = {};
+    function r(e) {
+        var o = i[e];
+        if (void 0 !== o)
+            return o.exports;
+        var s = i[e] = {
+            exports: {}
+        };
+        return t[e].call(s.exports, s, s.exports, r),
+        s.exports
+    }
+    r.m = t,
+    e = [],
+    r.O = (t,i,o,s)=>{
+        if (!i) {
+            var n = 1 / 0;
+            for (l = 0; l < e.length; l++) {
+                for (var [i,o,s] = e[l], a = !0, d = 0; d < i.length; d++)
+                    (!1 & s || n >= s) && Object.keys(r.O).every((e=>r.O[e](i[d]))) ? i.splice(d--, 1) : (a = !1,
+                    s < n && (n = s));
+                if (a) {
+                    e.splice(l--, 1);
+                    var h = o();
+                    void 0 !== h && (t = h)
+                }
+            }
+            return t
+        }
+        s = s || 0;
+        for (var l = e.length; l > 0 && e[l - 1][2] > s; l--)
+            e[l] = e[l - 1];
+        e[l] = [i, o, s]
+    }
+    ,
+    r.n = e=>{
+        var t = e && e.__esModule ? ()=>e.default : ()=>e;
+        return r.d(t, {
+            a: t
+        }),
+        t
+    }
+    ,
+    r.d = (e,t)=>{
+        for (var i in t)
+            r.o(t, i) && !r.o(e, i) && Object.defineProperty(e, i, {
+                enumerable: !0,
+                get: t[i]
+            })
+    }
+    ,
+    r.g = function() {
+        if ("object" == typeof globalThis)
+            return globalThis;
+        try {
+            return this || new Function("return this")()
+        } catch (e) {
+            if ("object" == typeof window)
+                return window
+        }
+    }(),
+    r.o = (e,t)=>Object.prototype.hasOwnProperty.call(e, t),
+    (()=>{
+        var e = {
+            408: 0
+        };
+        r.O.j = t=>0 === e[t];
+        var t = (t,i)=>{
+            var o, s, [n,a,d] = i, h = 0;
+            if (n.some((t=>0 !== e[t]))) {
+                for (o in a)
+                    r.o(a, o) && (r.m[o] = a[o]);
+                if (d)
+                    var l = d(r)
+            }
+            for (t && t(i); h < n.length; h++)
+                s = n[h],
+                r.o(e, s) && e[s] && e[s][0](),
+                e[s] = 0;
+            return r.O(l)
+        }
+          , i = globalThis.webpackChunk = globalThis.webpackChunk || [];
+        i.forEach(t.bind(null, 0)),
+        i.push = t.bind(null, i.push.bind(i))
+    }
+    )();
+    var o = {};
+    (()=>{
+        "use strict";
+        var e = r(1197);
+        function t(e, t, i) {
+            return (t = function(e) {
+                var t = function(e, t) {
+                    if ("object" != typeof e || null === e)
+                        return e;
+                    var i = e[Symbol.toPrimitive];
+                    if (void 0 !== i) {
+                        var r = i.call(e, "string");
+                        if ("object" != typeof r)
+                            return r;
+                        throw new TypeError("@@toPrimitive must return a primitive value.")
+                    }
+                    return String(e)
+                }(e);
+                return "symbol" == typeof t ? t : String(t)
+            }(t))in e ? Object.defineProperty(e, t, {
+                value: i,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = i,
+            e
+        }
+        class i {
+            constructor(i, r, o, s) {
+                t(this, "beat", void 0),
+                t(this, "currentViewHandle", void 0),
+                t(this, "el", void 0),
+                t(this, "from", void 0),
+                t(this, "idx", void 0),
+                t(this, "handle", void 0),
+                t(this, "handleParts", void 0),
+                t(this, "hidden", void 0),
+                t(this, "labels", void 0),
+                t(this, "overflow", void 0),
+                t(this, "to", void 0),
+                t(this, "top", void 0),
+                this.beat = i.beat,
+                this.from = i.from,
+                this.to = i.to,
+                this.idx = r,
+                this.handle = i.handle,
+                this.hidden = o,
+                this.handleParts = void 0 !== s ? s : "N" === this.handle ? void 0 : (0,
+                e.Uz)(this.handle),
+                this.checkOverflow = this.checkOverflow.bind(this),
+                this.getEnharmonic = this.getEnharmonic.bind(this),
+                this.getTop = this.getTop.bind(this),
+                this.getViewHandle = this.getViewHandle.bind(this),
+                this.isRest = this.isRest.bind(this),
+                this.isLastOnRow = this.isLastOnRow.bind(this),
+                this.isSimple = this.isSimple.bind(this),
+                this.setHandle = this.setHandle.bind(this),
+                this.setHidden = this.setHidden.bind(this),
+                this.updateLabel = this.updateLabel.bind(this);
+                const n = this.getViewHandle();
+                this.currentViewHandle = n,
+                this.el = (0,
+                e.vr)(n, o, Chordify.chordLang, r),
+                this.labels = this.el.children().first().children()
+            }
+            checkOverflow() {
+                if (void 0 === Chordify.song?.chords)
+                    return console.error(new Error("Chordify.song missing"));
+                if (void 0 === this.handleParts?.bassNote)
+                    return;
+                const e = Chordify.song.chords[this.idx - 1]
+                  , t = this.overflow;
+                if (this.el.removeClass("hidden-overflow"),
+                this.hidden && e && e.overflow)
+                    this.overflow = !0;
+                else if (this.hidden)
+                    this.overflow = !1;
+                else {
+                    if ("" === window.getComputedStyle(this.labels[1], ":before").content)
+                        return;
+                    {
+                        const e = this.el.width();
+                        if (void 0 === e)
+                            return console.error("elWidth missing");
+                        this.overflow = this.labels[0].offsetWidth + this.labels[1].offsetWidth > e
+                    }
+                }
+                if (this.overflow) {
+                    const e = Chordify.song.chords[this.idx + 1]
+                      , t = void 0 !== e && e.hidden;
+                    this.el.toggleClass("hidden-overflow", this.isLastOnRow() || !t)
+                }
+                t !== this.overflow && this.el.toggleClass("overflow", this.overflow)
+            }
+            getEnharmonic() {
+                return (0,
+                e.wX)(this.handle)
+            }
+            getViewHandle() {
+                if (void 0 === this.handleParts)
+                    return "N";
+                const t = {
+                    root: (0,
+                    e.y8)(this.handleParts.root, Chordify.song?.accidental),
+                    extension: this.handleParts.extension,
+                    bassNote: void 0 !== this.handleParts.bassNote ? (0,
+                    e.y8)(this.handleParts.bassNote, Chordify.song?.accidental) : void 0
+                };
+                if (Chordify.isPremium) {
+                    const i = Chordify.premium.getCompensatedViewHandle(t);
+                    return (0,
+                    e.YL)(i)
+                }
+                return (0,
+                e.YL)(t)
+            }
+            getTop() {
+                return void 0 === this.top && (this.top = (this.el.offset() ?? {}).top),
+                this.top ?? -1
+            }
+            isLastOnRow() {
+                if (void 0 === Chordify.song?.chords)
+                    throw new Error("song.chords missing");
+                const e = Chordify.song.chords[this.idx + 1];
+                return void 0 === e || !Chordify.diagramsVisible && e.getTop() !== this.getTop()
+            }
+            isRest() {
+                return "N" === this.handle
+            }
+            isSimple() {
+                return "N" === this.handle || void 0 !== this.handleParts && (0,
+                e.dk)(this.handleParts)
+            }
+            setHandle(t, i) {
+                this.handle !== t && (this.handle = t,
+                this.handleParts = "N" === t ? void 0 : (0,
+                e.Uz)(t),
+                this.el.data("handle", t),
+                this.updateLabel()),
+                void 0 !== i && this.setHidden(i)
+            }
+            setHidden(e) {
+                this.hidden = e,
+                this.el.toggleClass("nolabel", e)
+            }
+            updateLabel() {
+                const t = this.getViewHandle();
+                if (t === this.currentViewHandle)
+                    return;
+                this.currentViewHandle = t;
+                const i = (0,
+                e.xU)(t, Chordify.chordLang);
+                this.labels[0].innerHTML = i.label,
+                void 0 !== i.bass ? (this.labels[1].innerHTML = i.bass,
+                setTimeout(this.checkOverflow, 0)) : (this.labels[1].innerHTML = "",
+                this.overflow && (this.el.removeClass("overflow hidden-overflow"),
+                this.overflow = !1))
+            }
+        }
+        class o {
+            constructor(i, r, o) {
+                t(this, "data", void 0),
+                t(this, "idx", void 0),
+                t(this, "handleParts", void 0),
+                t(this, "hidden", void 0),
+                this.data = i,
+                this.hidden = o,
+                this.idx = r,
+                this.handleParts = "N" === i.handle ? void 0 : (0,
+                e.Uz)(i.handle)
+            }
+            isSimple() {
+                return "N" === this.data.handle || void 0 !== this.handleParts && (0,
+                e.dk)(this.handleParts)
+            }
+        }
+        r(5988);
+        var s = r(7142)
+          , n = r(6538);
+        function a(e, t, i) {
+            return (t = function(e) {
+                var t = function(e, t) {
+                    if ("object" != typeof e || null === e)
+                        return e;
+                    var i = e[Symbol.toPrimitive];
+                    if (void 0 !== i) {
+                        var r = i.call(e, "string");
+                        if ("object" != typeof r)
+                            return r;
+                        throw new TypeError("@@toPrimitive must return a primitive value.")
+                    }
+                    return String(e)
+                }(e);
+                return "symbol" == typeof t ? t : String(t)
+            }(t))in e ? Object.defineProperty(e, t, {
+                value: i,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = i,
+            e
+        }
+        class d {
+            constructor(t, i) {
+                a(this, "derivedBpm", void 0),
+                a(this, "derivedKey", void 0),
+                a(this, "chordsByChordLevel", {}),
+                a(this, "accidental", void 0),
+                a(this, "anacrusisPadding", void 0),
+                a(this, "barLength", void 0),
+                a(this, "canSimplify", void 0),
+                a(this, "chordLevel", void 0),
+                a(this, "chords", void 0),
+                a(this, "edit", void 0),
+                a(this, "editUserId", void 0),
+                a(this, "id", void 0),
+                a(this, "key", void 0),
+                a(this, "versionId", void 0),
+                a(this, "getSongBPM", (()=>{
+                    const e = Chordify.isPremium ? Chordify.premium.getPlayerSpeed() : null;
+                    return null !== e ? Math.round(e * this.derivedBpm) : this.derivedBpm
+                }
+                )),
+                a(this, "getSongKeyHandle", (()=>(0,
+                e.YL)({
+                    root: this.key.root,
+                    extension: this.key.interval
+                }))),
+                a(this, "invalidateChordLevelChords", (()=>{
+                    this.chordsByChordLevel = {}
+                }
+                )),
+                a(this, "setBarLength", (e=>{
+                    if (this.barLength = e,
+                    this.anacrusisPadding > e - 1) {
+                        const t = e - 1;
+                        if (Chordify.editJSLoaded)
+                            Chordify.edit.shiftChords(t);
+                        else {
+                            const e = t - (this.originalAnacrusisPadding ?? this.anacrusisPadding);
+                            this.setOffset(e)
+                        }
+                    }
+                }
+                )),
+                a(this, "setChordLevel", (e=>{
+                    this.chordLevel !== e && (this.chordLevel = e,
+                    this.updateChordsToChordLevel())
+                }
+                )),
+                a(this, "setChordLevelChords", ((e,t)=>{
+                    const i = t.split("\n")
+                      , r = {};
+                    for (const e in i) {
+                        const t = i[e].split(";")[1];
+                        r[e] = t
+                    }
+                    return this.chordsByChordLevel[e] = r,
+                    r
+                }
+                )),
+                a(this, "setEditData", (e=>{
+                    if (e.offset && 0 !== this.anacrusisPadding) {
+                        const t = this.anacrusisPadding - e.offset;
+                        this.originalAnacrusisPadding = (0,
+                        n.re)(t, 0, this.barLength - 1),
+                        this.edit.offset = e.offset
+                    }
+                    void 0 !== e.accidental && null !== e.accidental && Chordify.changeAccidental("flat" === e.accidental ? "b" : "#")
+                }
+                )),
+                a(this, "originalAnacrusisPadding", void 0),
+                a(this, "setOffset", (e=>{
+                    void 0 === this.originalAnacrusisPadding && (this.originalAnacrusisPadding = this.anacrusisPadding);
+                    const t = this.originalAnacrusisPadding + e;
+                    this.anacrusisPadding = (0,
+                    n.re)(t, 0, this.barLength - 1),
+                    this.edit.offset = e
+                }
+                )),
+                a(this, "shiftRoot", ((e,t)=>{
+                    const i = (0,
+                    n.re)(s.mp[e] + t, 0, 11)
+                      , r = this.accidental ?? this.key.accidental;
+                    return s.QL[r][i]
+                }
+                )),
+                a(this, "updateChordsToChordLevel", (()=>{
+                    if (!Chordify.chordsLoaded)
+                        return console.error(new Error("chords not loaded"));
+                    const t = Chordify.song?.chords
+                      , i = i=>{
+                        for (const r in i) {
+                            const o = i[r]
+                              , s = (0,
+                            e.u)(t)(parseInt(r, 10));
+                            s && s.setHandle(o)
+                        }
+                        Chordify.updateChordView(!1)
+                    }
+                      , r = this.chordsByChordLevel[this.chordLevel];
+                    if (void 0 !== r)
+                        return void i(r);
+                    const o = (()=>{
+                        if (Chordify.editJSLoaded && Chordify.edit.editDraft)
+                            return Chordify.userId;
+                        const e = (0,
+                        n.XX)("edit");
+                        return !1 !== e && "original" !== e ? e : void 0
+                    }
+                    )();
+                    var s, a, d;
+                    (s = this.id,
+                    a = this.chordLevel,
+                    d = o,
+                    e=>{
+                        const t = "simple" === a ? "maj_min" : "extended_inversions"
+                          , i = void 0 !== d ? `/edits/${d}` : "";
+                        return $.getJSON(`/api/v2/songs/${s}${i}/chords?vocabulary=${t}`, e)
+                    }
+                    )((e=>{
+                        const t = this.setChordLevelChords(this.chordLevel, e.chords);
+                        i(t)
+                    }
+                    ))
+                }
+                )),
+                this.barLength = t.chordInfo.barLength,
+                this.derivedBpm = t.chordInfo.derivedBpm,
+                this.derivedKey = t.chordInfo.derivedKey,
+                this.editUserId = t.chordInfo.editUserId ?? void 0,
+                this.versionId = t.versionId,
+                this.canSimplify = !1,
+                this.id = t.pseudoId,
+                this.chordLevel = i,
+                this.edit = {
+                    accidental: void 0,
+                    offset: 0
+                },
+                this.anacrusisPadding = 0;
+                const [r,o] = this.derivedKey.split(":")
+                  , d = (0,
+                n.re)(s.ew[o][r] + Chordify.transposeSetting, 0, 11)
+                  , [h,l] = s.XP[o][d];
+                this.key = {
+                    accidental: l,
+                    interval: o,
+                    root: h
+                },
+                this.setChordLevelChords(i, t.chords)
+            }
+        }
+        function h(e, t, i) {
+            return (t = function(e) {
+                var t = function(e, t) {
+                    if ("object" != typeof e || null === e)
+                        return e;
+                    var i = e[Symbol.toPrimitive];
+                    if (void 0 !== i) {
+                        var r = i.call(e, "string");
+                        if ("object" != typeof r)
+                            return r;
+                        throw new TypeError("@@toPrimitive must return a primitive value.")
+                    }
+                    return String(e)
+                }(e);
+                return "symbol" == typeof t ? t : String(t)
+            }(t))in e ? Object.defineProperty(e, t, {
+                value: i,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = i,
+            e
+        }
+        function l(e, t, i) {
+            return (t = function(e) {
+                var t = function(e, t) {
+                    if ("object" != typeof e || null === e)
+                        return e;
+                    var i = e[Symbol.toPrimitive];
+                    if (void 0 !== i) {
+                        var r = i.call(e, "string");
+                        if ("object" != typeof r)
+                            return r;
+                        throw new TypeError("@@toPrimitive must return a primitive value.")
+                    }
+                    return String(e)
+                }(e);
+                return "symbol" == typeof t ? t : String(t)
+            }(t))in e ? Object.defineProperty(e, t, {
+                value: i,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = i,
+            e
+        }
+        class c {
+            constructor(e) {
+                l(this, "currentTime", 0),
+                l(this, "events", void 0),
+                l(this, "isReady", !1),
+                l(this, "speeds", void 0),
+                l(this, "state", "stopped"),
+                l(this, "type", void 0),
+                l(this, "on", ((e,t)=>(void 0 === this.events[e] && (this.events[e] = []),
+                this.events[e].push(t),
+                ()=>{
+                    this.events[e] = this.events[e].filter((e=>e !== t))
+                }
+                ))),
+                l(this, "fire", (e=>{
+                    for (const t in this.events[e.name])
+                        this.events[e.name][t] && this.events[e.name][t](e)
+                }
+                )),
+                this.events = {},
+                this.type = e
+            }
+        }
+        function u(e, t, i) {
+            return (t = function(e) {
+                var t = function(e, t) {
+                    if ("object" != typeof e || null === e)
+                        return e;
+                    var i = e[Symbol.toPrimitive];
+                    if (void 0 !== i) {
+                        var r = i.call(e, "string");
+                        if ("object" != typeof r)
+                            return r;
+                        throw new TypeError("@@toPrimitive must return a primitive value.")
+                    }
+                    return String(e)
+                }(e);
+                return "symbol" == typeof t ? t : String(t)
+            }(t))in e ? Object.defineProperty(e, t, {
+                value: i,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = i,
+            e
+        }
+        class p extends c {
+            constructor(e, t, i) {
+                super(t),
+                this.$el = e,
+                u(this, "offset", 0),
+                u(this, "streamUrl", void 0),
+                u(this, "isTweening", !1),
+                u(this, "timer", void 0),
+                u(this, "jPlayer", void 0),
+                u(this, "initialize", (()=>{
+                    this.loadJPlayer(this.streamUrl)
+                }
+                )),
+                u(this, "loadJPlayer", (e=>{
+                    const t = {
+                        mp3: e
+                    };
+                    this.jPlayer({
+                        ready: ()=>{
+                            this.action({
+                                name: "setMedia",
+                                media: t
+                            }),
+                            this.isReady = !0,
+                            this.fire({
+                                name: "ready"
+                            })
+                        }
+                        ,
+                        size: {
+                            width: "1px",
+                            height: "1px"
+                        },
+                        volume: 100,
+                        errorAlerts: !1,
+                        warningAlerts: !1,
+                        solution: "html, flash",
+                        preload: "soundcloud" === this.type ? "none" : "auto",
+                        swfPath: "/js/jplayer/",
+                        wmmode: "window",
+                        supplied: "mp3"
+                    }).on($.jPlayer.event.play, (()=>{
+                        this.state = "playing",
+                        this.fire({
+                            name: "play"
+                        })
+                    }
+                    )).on($.jPlayer.event.pause, (e=>{
+                        this.state = "paused",
+                        this.stopTween(),
+                        this.fire({
+                            name: "pause"
+                        }),
+                        0 === e.jPlayer.status.currentTime && (this.state = "stopped",
+                        this.fire({
+                            name: "stop"
+                        }))
+                    }
+                    )).on($.jPlayer.event.ended, (()=>{
+                        this.state = "stopped",
+                        this.stopTween(),
+                        this.fire({
+                            name: "stop"
+                        })
+                    }
+                    )).on($.jPlayer.event.timeupdate, (e=>{
+                        !this.isTweening && e.jPlayer.status.currentTime > 0 && !e.jPlayer.status.waitForPlay && !e.jPlayer.status.paused && this.tween(),
+                        this.currentTime = e.jPlayer.status.currentTime + this.offset
+                    }
+                    )).on($.jPlayer.event.error, (t=>{
+                        t.jPlayer.error.type === $.jPlayer.error.URL && (this.fire({
+                            name: "error"
+                        }),
+                        "soundcloud" === this.type && $.ajax({
+                            url: e,
+                            error: (e,t,i)=>{
+                                if (e.responseJSON && e.responseJSON.errors && e.responseJSON.errors.length > 0 && e.responseJSON.errors[0].meta && e.responseJSON.errors[0].meta.rate_limit) {
+                                    const t = e.responseJSON.errors[0].meta.reset_time;
+                                    $.ajax({
+                                        url: "/song/checkSoundcloudLimit",
+                                        data: {
+                                            reset_time: t
+                                        }
+                                    }),
+                                    showPopup(Lang.soundcloud_limit_reached)
+                                } else if (!$("#song").data("deleted")) {
+                                    const e = $("#song").data("pseudoid");
+                                    $.ajax({
+                                        url: `/song/checkDeleted/${e}`
+                                    })
+                                }
+                            }
+                        }))
+                    }
+                    ))
+                }
+                )),
+                u(this, "stopTween", (()=>{
+                    this.isTweening = !1,
+                    clearInterval(this.timer)
+                }
+                )),
+                u(this, "tween", (()=>{
+                    !0 !== this.isTweening && (this.isTweening = !0,
+                    this.timer = window.setInterval((()=>{
+                        this.fire({
+                            name: "pulse",
+                            currentTime: this.currentTime
+                        }),
+                        this.currentTime += .05
+                    }
+                    ), 50))
+                }
+                )),
+                u(this, "action", (e=>{
+                    const t = e=>{
+                        e -= this.offset,
+                        this.currentTime = e
+                    }
+                    ;
+                    switch (e.name) {
+                    case "mute":
+                        this.jPlayer(e.name, e.mute);
+                        break;
+                    case "pause":
+                    case "play":
+                        void 0 !== e.seekTo && t(e.seekTo),
+                        this.jPlayer(e.name, e.seekTo);
+                        break;
+                    case "playHead":
+                        t(e.seekTo),
+                        this.jPlayer(e.name, e.seekTo);
+                        break;
+                    case "setMedia":
+                        this.jPlayer(e.name, e.media);
+                        break;
+                    case "volume":
+                        this.jPlayer(e.name, e.volume);
+                        break;
+                    default:
+                        this.jPlayer(e.name)
+                    }
+                }
+                )),
+                u(this, "setSpeedInternal", (e=>{
+                    const t = this.speeds[e.toString()];
+                    return void 0 !== t && (this.$el.find("audio").prop("playbackRate", t),
+                    !0)
+                }
+                )),
+                this.speeds = {
+                    "-5": .5,
+                    "-4": .6,
+                    "-3": .7,
+                    "-2": .8,
+                    "-1": .9,
+                    0: 1,
+                    1: 1.1,
+                    2: 1.2,
+                    3: 1.3,
+                    4: 1.4,
+                    5: 1.5
+                },
+                this.isTweening = !1,
+                this.streamUrl = f(t, i),
+                this.jPlayer = this.$el.jPlayer.bind(this.$el)
+            }
+        }
+        const f = (e,t)=>{
+            switch (e) {
+            case "deezer":
+                return `//${self.location.host}/stream/deezer/${t.externalid}`;
+            case "file":
+                return `//${self.location.host}/api/v2/songs/${t.pseudoid}/stream`;
+            case "rocketsongs":
+            case "soundcloud":
+            case "url":
+                return t.stream
+            }
+        }
+        ;
+        class y extends p {
+            constructor(e, t) {
+                var i, r, o;
+                super(e, "deezer", t),
+                i = this,
+                o = ()=>{
+                    getDeezerAccessToken((e=>{
+                        this.streamUrl = this.streamUrl + (e ? `/${e}` : ""),
+                        this.loadJPlayer(this.streamUrl),
+                        e || (this.offset = 30.8,
+                        this.fire({
+                            name: "preview"
+                        }))
+                    }
+                    ))
+                }
+                ,
+                (r = function(e) {
+                    var t = function(e, t) {
+                        if ("object" != typeof e || null === e)
+                            return e;
+                        var i = e[Symbol.toPrimitive];
+                        if (void 0 !== i) {
+                            var r = i.call(e, "string");
+                            if ("object" != typeof r)
+                                return r;
+                            throw new TypeError("@@toPrimitive must return a primitive value.")
+                        }
+                        return String(e)
+                    }(e);
+                    return "symbol" == typeof t ? t : String(t)
+                }(r = "initialize"))in i ? Object.defineProperty(i, r, {
+                    value: o,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }) : i[r] = o
+            }
+        }
+        function g(e, t, i) {
+            return (t = function(e) {
+                var t = function(e, t) {
+                    if ("object" != typeof e || null === e)
+                        return e;
+                    var i = e[Symbol.toPrimitive];
+                    if (void 0 !== i) {
+                        var r = i.call(e, "string");
+                        if ("object" != typeof r)
+                            return r;
+                        throw new TypeError("@@toPrimitive must return a primitive value.")
+                    }
+                    return String(e)
+                }(e);
+                return "symbol" == typeof t ? t : String(t)
+            }(t))in e ? Object.defineProperty(e, t, {
+                value: i,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = i,
+            e
+        }
+        window.YT = window.YT ?? {
+            PlayerState: {
+                UNSTARTED: -1,
+                ENDED: 0,
+                PLAYING: 1,
+                PAUSED: 2,
+                BUFFERING: 3,
+                CUED: 5
+            }
+        };
+        class v extends c {
+            constructor(e) {
+                super("youtube"),
+                g(this, "$iframeEl", void 0),
+                g(this, "config", void 0),
+                g(this, "errorHandled", !1),
+                g(this, "isUserInited", !1),
+                g(this, "realSpeed", 1),
+                g(this, "videoId", void 0),
+                g(this, "lastSeek", void 0),
+                g(this, "lastSeekDestination", void 0),
+                g(this, "speedCheckTimer", void 0),
+                g(this, "timer", void 0),
+                g(this, "initialize", (()=>{
+                    window.addEventListener("message", (e=>{
+                        if (!("string" == typeof e.data.source && e.data.source.indexOf("react-") > -1) && e.origin === window.embedHost) {
+                            const {cmd: t, parms: i} = e.data;
+                            switch (t) {
+                            case "onReady":
+                                this.onReady();
+                                break;
+                            case "onError":
+                                this.onError(i[0]);
+                                break;
+                            case "onStateChange":
+                                this.onStateChange(i[0]);
+                                break;
+                            case "onYouTubeIframeAPIReady":
+                                this.onYouTubeIframeAPIReady();
+                                break;
+                            case "setCurrentTime":
+                                this.setCurrentTime(i[0]);
+                                break;
+                            case "setCurrentSpeed":
+                                this.setCurrentSpeed(i[0])
+                            }
+                        }
+                    }
+                    )),
+                    this.loadWrappedPlayer()
+                }
+                )),
+                g(this, "getPlaybackRate", (()=>{
+                    this.sendMessage({
+                        cmd: "getPlaybackRate"
+                    })
+                }
+                )),
+                g(this, "setPlaybackRate", (e=>{
+                    this.sendMessage({
+                        cmd: "setPlaybackRate",
+                        parms: [e]
+                    })
+                }
+                )),
+                g(this, "playVideo", (()=>{
+                    this.sendMessage({
+                        cmd: "playVideo"
+                    })
+                }
+                )),
+                g(this, "pauseVideo", (()=>{
+                    this.sendMessage({
+                        cmd: "pauseVideo"
+                    })
+                }
+                )),
+                g(this, "stopVideo", (()=>{
+                    this.sendMessage({
+                        cmd: "stopVideo"
+                    })
+                }
+                )),
+                g(this, "mute", (()=>{
+                    this.sendMessage({
+                        cmd: "mute"
+                    })
+                }
+                )),
+                g(this, "unMute", (()=>{
+                    this.sendMessage({
+                        cmd: "unMute"
+                    })
+                }
+                )),
+                g(this, "setVolume", (e=>{
+                    document?.body?.className.indexOf("ios") > -1 || this.sendMessage({
+                        cmd: "setVolume",
+                        parms: [e]
+                    })
+                }
+                )),
+                g(this, "loadWrappedPlayer", (()=>{
+                    let e = `${window.embedHost}/youtube_embed.html?20220623`;
+                    window.needsConsent && (e += "&nocookie=1"),
+                    $("#youtube").html(`<iframe id="embedWrapper" src="${e}" style="border:none;height:100%;width:100%;" scrolling="no" allow="autoplay" referrerpolicy="no-referrer"/>`),
+                    this.$iframeEl = $("#embedWrapper")
+                }
+                )),
+                g(this, "sendMessage", (e=>{
+                    const t = this.$iframeEl?.get(0);
+                    t && document.contains(t) ? t.contentWindow ? t.contentWindow.postMessage(e, "*") : console.error(new Error(`Failed to send message "${e.cmd}", unable to find find contentwindow`)) : console.error(new Error("No player iframe found in dom"))
+                }
+                )),
+                g(this, "onReady", (()=>{
+                    this.isReady = !0,
+                    this.unMute(),
+                    this.setVolume(100),
+                    this.fire({
+                        name: "ready"
+                    })
+                }
+                )),
+                g(this, "onError", (e=>{
+                    150 === e && this.fire({
+                        name: "error"
+                    }),
+                    this.errorHandled || (this.errorHandled = !0,
+                    $.ajax({
+                        method: "POST",
+                        url: `/api/internal/analytics/youtubeError/${$("#song").data("pseudoid")}/${e}`
+                    }))
+                }
+                )),
+                g(this, "setCurrentTime", (e=>{
+                    this.currentTime = e
+                }
+                )),
+                g(this, "onYouTubeIframeAPIReady", (()=>{
+                    this.sendMessage({
+                        cmd: "initPlayer",
+                        parms: [{
+                            videoId: this.videoId,
+                            config: this.config
+                        }]
+                    })
+                }
+                )),
+                g(this, "setCurrentSpeed", (e=>{
+                    this.realSpeed = e
+                }
+                )),
+                g(this, "onStateChange", (e=>{
+                    e === YT.PlayerState.UNSTARTED || (e === YT.PlayerState.BUFFERING ? this.state = "buffering" : e === YT.PlayerState.PLAYING ? ("playing" !== this.state && (this.state = "playing",
+                    this.fire({
+                        name: "play"
+                    })),
+                    window.setTimeout((()=>{
+                        this.tween()
+                    }
+                    ), 1e3)) : e === YT.PlayerState.PAUSED ? (this.state = "paused",
+                    clearInterval(this.timer),
+                    this.fire({
+                        name: "pause"
+                    }),
+                    window.setTimeout((()=>{
+                        clearInterval(this.timer)
+                    }
+                    ), 1e3)) : e === YT.PlayerState.ENDED && (this.state = "stopped",
+                    this.fire({
+                        name: "stop"
+                    }),
+                    clearInterval(this.timer)))
+                }
+                )),
+                g(this, "tween", (()=>{
+                    "playing" === this.state && (clearInterval(this.timer),
+                    this.timer = window.setInterval((()=>{
+                        const e = (new Date).getTime();
+                        if (void 0 !== this.lastSeekDestination && e - this.lastSeek > 500)
+                            return this.seekTo(this.lastSeekDestination),
+                            void (this.lastSeekDestination = void 0);
+                        e - this.lastSeek < 500 || (this.currentTime += .02,
+                        this.currentTime > 0 && this.fire({
+                            name: "pulse",
+                            currentTime: this.currentTime
+                        }))
+                    }
+                    ), 20))
+                }
+                )),
+                g(this, "seekTo", (e=>{
+                    const t = (new Date).getTime();
+                    return t - this.lastSeek < 500 ? (this.lastSeek = t,
+                    this.lastSeekDestination = e,
+                    !1) : (0 === e && (e = 1e-4),
+                    this.isReady ? (this.lastSeek = t,
+                    this.sendMessage({
+                        cmd: "seekTo",
+                        parms: [e]
+                    }),
+                    this.tween(),
+                    void (this.currentTime = e)) : (window.setTimeout((()=>{
+                        this.seekTo(e)
+                    }
+                    ), 500),
+                    void (this.currentTime = e)))
+                }
+                )),
+                g(this, "action", (e=>{
+                    if (this.isReady)
+                        switch (e.name) {
+                        case "play":
+                            return "playing" !== this.state && this.playVideo(),
+                            void 0 !== e.seekTo && this.seekTo(e.seekTo),
+                            void (window.isTouch && !this.isUserInited && window.setTimeout((()=>{
+                                "buffering" !== this.state || this.isUserInited || this.pauseVideo()
+                            }
+                            ), 2e3));
+                        case "playHead":
+                            return void this.seekTo(e.seekTo);
+                        case "pause":
+                            this.pauseVideo();
+                            break;
+                        case "stop":
+                            this.stopVideo();
+                            break;
+                        case "mute":
+                            e.mute ? this.mute() : this.unMute();
+                            break;
+                        case "volume":
+                            {
+                                const t = 100 * e.volume;
+                                this.setVolume(t);
+                                break
+                            }
+                        }
+                    else
+                        window.setTimeout((()=>{
+                            this.action(e)
+                        }
+                        ), 500)
+                }
+                )),
+                g(this, "setSpeedInternal", (e=>{
+                    if (!Chordify.isPremium || !this.isReady)
+                        return !1;
+                    const t = this.speeds[e.toString()];
+                    return void 0 !== t && (this.setPlaybackRate(t),
+                    this.speedCheckTimer && clearTimeout(this.speedCheckTimer),
+                    this.speedCheckTimer = window.setTimeout((()=>{
+                        if (this.realSpeed !== t && Chordify.isPremium) {
+                            const e = $(".function-speed").removeClass("active").css({
+                                opacity: .5
+                            });
+                            e.find(".icon-value").data("value", this.realSpeed).text(this.realSpeed);
+                            const t = Object.keys(this.speeds).find((e=>this.speeds[e] === this.realSpeed));
+                            Chordify.premium.tempo = void 0 !== t ? parseInt(t, 10) : Chordify.premium.tempo,
+                            e.data("tooltip", Lang.speed_disabled_youtube)
+                        }
+                    }
+                    ), 1e3),
+                    !0)
+                }
+                )),
+                this.config = {
+                    controls: e.ytCtrl
+                },
+                this.videoId = e.externalid,
+                this.lastSeek = (new Date).getTime(),
+                this.speeds = {
+                    "-2": .5,
+                    "-1": .75,
+                    0: 1,
+                    1: 1.25,
+                    2: 1.5,
+                    3: 1.75,
+                    4: 2
+                },
+                this.on("speed", (()=>this.getPlaybackRate()))
+            }
+        }
+        function m(e, t, i) {
+            return (t = function(e) {
+                var t = function(e, t) {
+                    if ("object" != typeof e || null === e)
+                        return e;
+                    var i = e[Symbol.toPrimitive];
+                    if (void 0 !== i) {
+                        var r = i.call(e, "string");
+                        if ("object" != typeof r)
+                            return r;
+                        throw new TypeError("@@toPrimitive must return a primitive value.")
+                    }
+                    return String(e)
+                }(e);
+                return "symbol" == typeof t ? t : String(t)
+            }(t))in e ? Object.defineProperty(e, t, {
+                value: i,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = i,
+            e
+        }
+        const C = "countoff-counter"
+          , b = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && parseInt(/Version\/(\d+)/.exec(navigator.userAgent)?.[1] ?? "", 10) >= 16;
+        window.ChordifyChord = i,
+        window.ChordifyLibrary = class {
+            constructor(t) {
+                h(this, "canCreateLoop", void 0),
+                h(this, "capoSetting", void 0),
+                h(this, "chordHtml", void 0),
+                h(this, "chordLang", void 0),
+                h(this, "chordsLoaded", void 0),
+                h(this, "countOffEnabled", void 0),
+                h(this, "diagramView", void 0),
+                h(this, "diagramsVisible", void 0),
+                h(this, "dzSupport", void 0),
+                h(this, "editJSLoaded", void 0),
+                h(this, "getParameter", void 0),
+                h(this, "hasWideChords", void 0),
+                h(this, "instrument", void 0),
+                h(this, "isPremium", void 0),
+                h(this, "jingleBellsEnabled", void 0),
+                h(this, "loop", void 0),
+                h(this, "lyricsEnabled", void 0),
+                h(this, "maxDuration", void 0),
+                h(this, "noPlayerSync", void 0),
+                h(this, "reactHasRendered", void 0),
+                h(this, "song", void 0),
+                h(this, "songView", void 0),
+                h(this, "transposeSetting", void 0),
+                h(this, "userSongSettings", void 0),
+                h(this, "userId", void 0),
+                h(this, "chordsLoadedCallbacks", []),
+                h(this, "initLoop", (()=>Chordify.doWhenChordsLoaded((e=>{
+                    if (void 0 === Chordify.player)
+                        return console.error("Chordify.player missing");
+                    const t = parseInt($(".currentChord, .chord-edit").data("i"))
+                      , i = parseInt($(".chord:first-child").data("i"))
+                      , r = t > 0 ? t : i;
+                    $("#chords").addClass("chords-loop"),
+                    Chordify.canCreateLoop = !0;
+                    let o = $();
+                    for (const t in e.chords) {
+                        const i = parseInt(t);
+                        if (!(i < r)) {
+                            if (i + 1 - r > 4 * e.barLength)
+                                break;
+                            o = o.add(e.chords[i].el)
+                        }
+                    }
+                    o.addClass("loop"),
+                    Chordify.player.$loopStart = o.first().addClass("loop-first"),
+                    Chordify.player.$loopEnd = o.last().addClass("loop-last"),
+                    Chordify.player.createLoopOptions(Chordify.player.$loopEnd),
+                    this.loop = {
+                        hasLoop: !0,
+                        loopChords: o
+                    },
+                    this.dispatchEvent({
+                        loop: {
+                            enabled: !0,
+                            end: Chordify.player.$loopEnd.data("i"),
+                            start: Chordify.player.$loopStart.data("i")
+                        }
+                    })
+                }
+                )))),
+                h(this, "lazyChords", void 0),
+                h(this, "maxDurationReached", !1),
+                h(this, "editJSLoading", !1),
+                h(this, "updateChordView", (t=>{
+                    Chordify.doWhenChordsLoaded((i=>{
+                        let r = !(0,
+                        n.XX)("version_id");
+                        this.hasWideChords = !1;
+                        let o = "";
+                        for (const s in i.chords) {
+                            const n = (0,
+                            e.u)(i.chords)(parseInt(s, 10));
+                            if (!n)
+                                continue;
+                            !n.isRest() && t && n.updateLabel();
+                            const a = n.currentViewHandle;
+                            n.setHidden(a === o),
+                            o = a,
+                            r = r && n.isSimple(),
+                            this.hasWideChords = this.hasWideChords || (0,
+                            e.Er)(n.handle, this.chordLang)
+                        }
+                        const s = document.getElementById("chords");
+                        s?.classList.toggle("wide-chords", this.hasWideChords),
+                        i.canSimplify = "simple" === i.chordLevel || !r;
+                        const a = {
+                            canSimplify: i.canSimplify
+                        };
+                        document.dispatchEvent(new CustomEvent("toggleSimplify",{
+                            detail: a
+                        })),
+                        this.dispatchEvent({
+                            chords: i.chords
+                        })
+                    }
+                    ))
+                }
+                ));
+                const {userId: i, userPreferences: r} = t;
+                this.canCreateLoop = !1,
+                this.capoSetting = 0,
+                this.chordLang = "english",
+                this.chordsLoaded = !1,
+                this.countOffEnabled = !1,
+                this.diagramView = "animated",
+                this.dzSupport = $("body").hasClass("supports-deezer"),
+                this.editJSLoaded = !1,
+                this.hasWideChords = !1,
+                this.isPremium = !1,
+                this.loop = {
+                    hasLoop: !1
+                },
+                this.lyricsEnabled = !1,
+                this.maxDuration = -1,
+                this.maxDurationReached = !1,
+                this.noPlayerSync = !1,
+                this.reactHasRendered = !1,
+                this.transposeSetting = 0,
+                this.userId = i,
+                this.songView = r?.preferredSongView ?? void 0,
+                this.diagramsVisible = "diagrams" === this.songView,
+                this.instrument = r?.preferredInstrument ?? void 0,
+                this.userSongSettings = {},
+                r?.userSongSettings && void 0 !== r.preferredInstrument && this.setUserSongSettings(r.userSongSettings, r.preferredInstrument),
+                this.attachChordsToDOM = this.attachChordsToDOM.bind(this),
+                this.changeAccidental = this.changeAccidental.bind(this),
+                this.changeChordLevel = this.changeChordLevel.bind(this),
+                this.changeDiagramView = this.changeDiagramView.bind(this),
+                this.changeInstrument = this.changeInstrument.bind(this),
+                this.changeView = this.changeView.bind(this),
+                this.chordHtml = (t,i)=>(0,
+                e.vr)(t, i, Chordify.chordLang),
+                this.copyEdit = this.copyEdit.bind(this),
+                this.disablePlayerSync = this.disablePlayerSync.bind(this),
+                this.dispatchEvent = this.dispatchEvent.bind(this),
+                this.dispatchReactRenderedEvent = this.dispatchReactRenderedEvent.bind(this),
+                this.doWhenReactRendered = this.doWhenReactRendered.bind(this),
+                this.doWhenChordsLoaded = this.doWhenChordsLoaded.bind(this),
+                this.getParameter = n.XX,
+                this.initLoop = this.initLoop.bind(this),
+                this.removeLoop = this.removeLoop.bind(this),
+                this.renderChords = this.renderChords.bind(this),
+                this.setPositions = this.setPositions.bind(this),
+                this.toggleCountOff = this.toggleCountOff.bind(this),
+                this.toggleEdit = this.toggleEdit.bind(this),
+                this.toggleLyrics = this.toggleLyrics.bind(this),
+                this.toggleJingleBell = this.toggleJingleBell.bind(this),
+                this.updateChordView = (0,
+                n.Ds)(this.updateChordView, 300, !0),
+                this.updateOverflow = this.updateOverflow.bind(this),
+                this.updateUserSongSettings = this.updateUserSongSettings.bind(this)
+            }
+            changeAccidental(e) {
+                if (void 0 === Chordify.song)
+                    return console.error(new Error("Chordify.song missing"));
+                Chordify.song.accidental !== e && (Chordify.song.accidental = e,
+                this.updateChordView(!0))
+            }
+            changeChordLevel(e) {
+                Chordify.song?.setChordLevel(e);
+                const t = "simple" === e ? "maj_min" : "extended_inversions";
+                Chordify.updateUserSongSettings({
+                    vocabulary: t
+                })
+            }
+            changeDiagramView(e) {
+                this.noPlayerSync && "animated" === e || (this.diagramView = e,
+                this.dispatchEvent({
+                    diagramView: e
+                }))
+            }
+            changeInstrument(t) {
+                if (t !== this.instrument && (this.instrument = t,
+                this.dispatchEvent({
+                    instrument: t
+                }),
+                Chordify.isPremium)) {
+                    const i = (0,
+                    e.M0)(t);
+                    if (void 0 === i)
+                        return Chordify.premium.changeCapo(0);
+                    const r = this.userSongSettings[i] ?? 0;
+                    Chordify.premium.changeCapo(r)
+                }
+            }
+            changeView(e) {
+                if (!e || this.songView === e)
+                    return;
+                $("#song").removeClass("view-chords view-edit view-diagrams").addClass(`view-${e}`);
+                const t = this.diagramsVisible
+                  , i = this.songView;
+                this.diagramsVisible = "diagrams" === e,
+                this.songView = e,
+                this.dispatchEvent({
+                    songView: e
+                }),
+                this.diagramsVisible && window.scrollY > 0 && $("html,body").animate({
+                    scrollTop: 0
+                }, "fast"),
+                !this.toggleEdit || "edit" !== i && "edit" !== this.songView || this.toggleEdit(),
+                "edit" === i && this.updateChordView(!1),
+                Chordify.player && (Chordify.player.updateSizes(),
+                Chordify.chordsLoaded && Chordify.player.$currentChord && (this.diagramsVisible || Chordify.player.$currentChord.index() > 16) && Chordify.player.scrollToChord(Chordify.player.$currentChord)),
+                this.chordsLoaded && t !== this.diagramsVisible && Chordify.updateOverflow(!1)
+            }
+            copyEdit(e) {
+                if (void 0 === Chordify.song)
+                    return console.error(new Error("Chordify.song missing"));
+                window.location.href = `/song/copyEdit/${Chordify.song.id}/${e}/${Chordify.song.versionId}`
+            }
+            disablePlayerSync() {
+                this.noPlayerSync = !0,
+                this.changeDiagramView("summary"),
+                void 0 !== Chordify.player && Chordify.player.setCurrentChord(Chordify.player.$currentChord)
+            }
+            dispatchEvent(e) {
+                Chordify.doWhenReactRendered((()=>document.dispatchEvent(new CustomEvent("ChordifyLibrary",{
+                    detail: e
+                }))))
+            }
+            dispatchReactRenderedEvent() {
+                this.reactHasRendered = !0,
+                document.dispatchEvent(new CustomEvent("ReactRendered"))
+            }
+            doWhenReactRendered(e) {
+                if (this.reactHasRendered)
+                    return e();
+                document.addEventListener("ReactRendered", e)
+            }
+            doWhenChordsLoaded(e) {
+                return Chordify.chordsLoaded ? (e(Chordify.song),
+                ()=>{}
+                ) : (this.chordsLoadedCallbacks.push(e),
+                ()=>{
+                    this.chordsLoadedCallbacks = this.chordsLoadedCallbacks.filter((t=>t !== e))
+                }
+                )
+            }
+            setChordsLoaded() {
+                if (this.chordsLoaded = !0,
+                !Chordify.chordsLoaded)
+                    return;
+                const e = Chordify.song;
+                this.chordsLoadedCallbacks.forEach((t=>{
+                    t(e)
+                }
+                )),
+                this.chordsLoadedCallbacks = []
+            }
+            removeLoop(e) {
+                if (void 0 === Chordify.player)
+                    return console.error("Chordify.player missing");
+                $(".loop").removeClass("loop loop-first loop-last"),
+                $(".loop-options").remove(),
+                $("#chords").removeClass("chords-loop"),
+                $(".function-select button").removeClass("active"),
+                this.loop = {
+                    hasLoop: !1
+                },
+                Chordify.player.hasMoved = !1,
+                Chordify.player.isDragging = !1,
+                Chordify.player.boundary = null,
+                "edit" !== this.songView && (this.canCreateLoop = !1),
+                void 0 !== e && (e.stopImmediatePropagation(),
+                e.preventDefault(),
+                e.stopPropagation()),
+                this.dispatchEvent({
+                    loop: {
+                        enabled: !1
+                    }
+                })
+            }
+            initSong(e, t) {
+                this.song = new d(e,t);
+                const i = this.renderChords(e.chords);
+                this.dispatchEvent({
+                    chords: this.song.chords
+                }),
+                this.doWhenReactRendered((()=>{
+                    this.attachChordsToDOM(i)
+                }
+                )),
+                "#edit" === location.hash && this.changeView("edit")
+            }
+            renderChords(t) {
+                const r = jQuery("<div>");
+                if (void 0 === Chordify.song)
+                    return console.error(new Error("Chordify.song missing")),
+                    r;
+                const s = {};
+                Chordify.song.chords = s,
+                this.maxDuration = $("body").hasClass("user-premium") ? 1800 : 600,
+                this.maxDurationReached = !1;
+                const a = t.trim().split("\n");
+                let d = !0
+                  , h = null;
+                const l = [];
+                this.lazyChords = l;
+                const c = []
+                  , u = !1 !== (0,
+                n.XX)("version_id")
+                  , p = "simple" === Chordify.song.chordLevel && !u;
+                let f = !0;
+                for (let t = 0; t < a.length; t++) {
+                    const r = (0,
+                    e.Cx)(a[t])
+                      , {beat: n, handle: u} = r;
+                    if (1 === n && (d = !1),
+                    d) {
+                        const e = n - 1;
+                        for (let t = 0; t < e; t++)
+                            c.push('<div class="fake-chord"></div>');
+                        Chordify.song.anacrusisPadding = e,
+                        d = !1
+                    }
+                    const y = h === u || h === (0,
+                    e.wX)(u);
+                    let g = !1;
+                    if (t > 64) {
+                        const e = new o(r,t,y);
+                        l.push(e),
+                        g = p || e.isSimple()
+                    } else {
+                        const e = new i(r,t,y);
+                        s[t] = e,
+                        c.push(e.el),
+                        this.checkMaxDuration(e, a.length),
+                        g = p || e.isSimple()
+                    }
+                    f = f && g,
+                    this.hasWideChords = this.hasWideChords || !g && (0,
+                    e.Er)(u, this.chordLang),
+                    h = u
+                }
+                this.hasWideChords && r[0].classList.add("wide-chords"),
+                c.push('<div class="chord"></div>'),
+                r.append(c),
+                Chordify.song.canSimplify = p || !f && !u;
+                const y = {
+                    canSimplify: Chordify.song.canSimplify
+                };
+                return document.dispatchEvent(new CustomEvent("toggleSimplify",{
+                    detail: y
+                })),
+                r
+            }
+            attachChordsToDOM(e) {
+                if (void 0 === Chordify.song?.chords)
+                    return console.error(new Error("Chordify.song missing"));
+                const t = $("#song").find("#chords").empty().removeClass("loading");
+                t.addClass(`barlength-${Chordify.song.barLength}`),
+                t.append(e.children()),
+                t.scrollLeft(0);
+                for (const e in Chordify.song.chords)
+                    Chordify.song.chords[e].checkOverflow();
+                setTimeout((()=>{
+                    if (void 0 === Chordify.song?.chords)
+                        return console.error(new Error("Chordify.song missing"));
+                    if (void 0 === this.lazyChords)
+                        return console.error("lazyChords missing");
+                    if (this.lazyChords.length > 0) {
+                        const e = this.lazyChords[this.lazyChords.length - 1].idx
+                          , r = [];
+                        for (const t of this.lazyChords) {
+                            const {data: o, idx: s, handleParts: n, hidden: a} = t
+                              , d = new i(o,s,a,n);
+                            Chordify.song.chords[t.idx] = d,
+                            r.push(d),
+                            this.checkMaxDuration(d, e)
+                        }
+                        t.children().last().before(r.map((e=>e.el)))
+                    }
+                    delete this.lazyChords,
+                    !this.diagramsVisible && this.maxDurationReached && $(".max-duration").width(($("#chordsArea").width() ?? 0) - 50),
+                    this.setChordsLoaded(),
+                    Chordify.song.canSimplify && this.updateOverflow(!0),
+                    Chordify.player && Chordify.player.handleChordsRendered(t)
+                }
+                ), 300);
+                let r = window.innerWidth;
+                window.addEventListener("resize", (0,
+                n.Ds)((()=>{
+                    r !== window.innerWidth && (r = window.innerWidth,
+                    this.updateOverflow())
+                }
+                ), 100, !1))
+            }
+            checkMaxDuration(e, t) {
+                if (void 0 === Chordify.song)
+                    return console.error(new Error("Chordify.song missing"));
+                const i = e.idx + Chordify.song.anacrusisPadding
+                  , r = t + Chordify.song.anacrusisPadding;
+                if (!this.maxDurationReached && e.from > this.maxDuration && i % (4 * Chordify.song.barLength) == 0 && i + 4 * Chordify.song.barLength < r) {
+                    this.maxDurationReached = !0;
+                    const t = $('<div class="max-duration"></div>');
+                    t.html(`<p>${Lang.max_duration}</p><a href="/premium" class="button-premium">${Lang.go_premium}</a>`),
+                    t.css({
+                        width: $("#chordsArea").width() - 50
+                    }).appendTo(e.el)
+                }
+                this.maxDurationReached && (e.setHidden(!0),
+                e.el[0].style.setProperty("background", "rgba(250,250,250,0.5)", "important"))
+            }
+            setUserSongSettings(t, i) {
+                const r = (0,
+                e.M0)(i);
+                this.transposeSetting = t.transpose ?? 0,
+                this.transposeSetting = (0,
+                n.re)(this.transposeSetting, -5, 6),
+                this.capoSetting = void 0 !== r ? t[r] ?? 0 : 0
+            }
+            toggleCountOff(e) {
+                if (this.countOffEnabled = e ?? !this.countOffEnabled,
+                this.dispatchEvent({
+                    countOff: this.countOffEnabled
+                }),
+                void 0 === Chordify.player)
+                    return console.error("Chordify.player missing");
+                Chordify.player.loadMetronome()
+            }
+            toggleJingleBell(e) {
+                if (void 0 === Chordify.player)
+                    return console.error("Chordify.player missing");
+                this.jingleBellsEnabled = void 0 === e ? !this.jingleBellsEnabled : e,
+                this.dispatchEvent({
+                    jingleBells: this.jingleBellsEnabled
+                }),
+                this.jingleBellsEnabled && (Chordify.player.playJingleBell(),
+                !window.isTouch && Chordify.player && Chordify.player.isReady && "playing" !== Chordify.player.mediaInteractor.state && Chordify.player.action({
+                    name: "play"
+                }),
+                Chordify.letItSnow && Chordify.letItSnow(),
+                window.document.addEventListener("ChordifyLibrary", (function(e) {
+                    void 0 !== e.detail.chordChange && Chordify.player && Chordify.player.jingleBellOnChord()
+                }
+                )));
+                const t = document.getElementById("snow-canvas");
+                null !== t && (t.style.display = Chordify.jingleBellsEnabled ? "block" : "none")
+            }
+            updateOverflow(e=!0) {
+                if (!Chordify.chordsLoaded)
+                    return console.error("Chords not loaded");
+                for (const t in Chordify.song.chords) {
+                    const i = Chordify.song.chords[t];
+                    if (!e) {
+                        const e = Chordify.song.chords[i.idx + 1];
+                        if (e && !e.isLastOnRow())
+                            continue
+                    }
+                    i.checkOverflow()
+                }
+            }
+            toggleEdit() {
+                if (!this.editJSLoading)
+                    if (Chordify.editJSLoaded)
+                        Chordify.edit.toggleEditMode();
+                    else {
+                        this.editJSLoading = !0;
+                        const e = document.querySelector("link[data-editLazyLoad]")
+                          , t = document.querySelector("script[data-editLazyLoad]");
+                        if (!e)
+                            return console.error("Missing editCSS");
+                        if (!t)
+                            return console.error("Missing editBundle");
+                        e.setAttribute("href", e.getAttribute("data-editLazyLoad") ?? ""),
+                        t.setAttribute("src", t.getAttribute("data-editLazyLoad") ?? ""),
+                        t.addEventListener("load", (()=>{
+                            this.editJSLoading = !1,
+                            Chordify.editJSLoaded = !0,
+                            this.toggleEdit()
+                        }
+                        ))
+                    }
+            }
+            toggleLyrics(e) {
+                this.lyricsEnabled = e ?? !this.lyricsEnabled,
+                this.dispatchEvent({
+                    lyrics: this.lyricsEnabled
+                })
+            }
+            setPositions(e) {
+                if (!Chordify.chordsLoaded)
+                    return console.error("Chords not loaded");
+                for (const [,t] of Object.entries(Chordify.song.chords))
+                    t.top = void 0 === t.top || void 0 === e ? t.el.offset()?.top : t.top + e
+            }
+            updateUserSongSettings(e) {
+                Object.assign(Chordify.userSongSettings, e)
+            }
+        }
+        ,
+        window.ChordifyPlayer = class {
+            constructor(e) {
+                m(this, "$currentChord", void 0),
+                m(this, "$dragStart", void 0),
+                m(this, "$loopEnd", null),
+                m(this, "$loopStart", null),
+                m(this, "$scrollArea", void 0),
+                m(this, "boundary", null),
+                m(this, "currentChordIndex", 0),
+                m(this, "hasMoved", !1),
+                m(this, "hasTouchMoved", !1),
+                m(this, "initializePlayerCalled", !1),
+                m(this, "isDragging", !1),
+                m(this, "isEmbed", void 0),
+                m(this, "mediaInteractor", void 0),
+                m(this, "playTime", 0),
+                m(this, "type", void 0),
+                m(this, "action", void 0),
+                m(this, "currentTime", void 0),
+                m(this, "isReady", !1),
+                m(this, "on", void 0),
+                m(this, "speeds", void 0),
+                m(this, "state", void 0),
+                m(this, "countOffInterval", void 0),
+                m(this, "chordHeight", 50),
+                m(this, "isCountingOff", !1),
+                m(this, "play30Dispatched", !1),
+                m(this, "playTS", null),
+                m(this, "scrollAreaHeight", 0),
+                m(this, "scrollAreaTop", 0),
+                m(this, "adjustChordScrollForLyrics", ((e,t,i)=>{
+                    if (!Chordify.lyricsEnabled)
+                        return void n.RQ.invalidate("lyrics-root");
+                    if (this.dispatchEvent({
+                        currentTime: e
+                    }),
+                    Chordify.diagramsVisible)
+                        return;
+                    const r = n.RQ.getById("lyrics-root")
+                      , o = n.RQ.getById("song-page-sticky-header");
+                    if (null === r || null === o)
+                        return;
+                    const s = r.getBoundingClientRect()
+                      , a = s.top
+                      , d = s.height
+                      , h = t.el[0].getBoundingClientRect().top
+                      , l = o.getBoundingClientRect().bottom;
+                    if (i > a || h < l) {
+                        const e = h - this.scrollAreaHeight + window.scrollY + d + 2 * this.chordHeight;
+                        $("html,body").stop().animate({
+                            scrollTop: e
+                        })
+                    }
+                }
+                )),
+                m(this, "createLoopOptions", (e=>{
+                    if (!Chordify.chordsLoaded)
+                        return console.error("Chords not loaded");
+                    const t = $(`<div class="loop-options"><a href="#" class="icon-delete edit-only"><a href="#copy" class="loop-copy edit-only">${Lang.copy}</a><a href="#remove" class="icon-close"></a></div>`).appendTo(e)
+                      , i = Chordify.song.chords[e.data("i") - 1]
+                      , r = void 0 === i || i.isLastOnRow();
+                    "edit" === Chordify.songView && r && t.css({
+                        right: "auto",
+                        left: 0
+                    })
+                }
+                )),
+                m(this, "dispatchEvent", (e=>{
+                    Chordify.dispatchEvent({
+                        player: e
+                    })
+                }
+                )),
+                m(this, "getPlayDuration", (()=>null === this.playTS ? null : Date.now() - this.playTS)),
+                m(this, "handleArrowKeys", (e=>{
+                    if (!Chordify.chordsLoaded)
+                        return console.error("Chords not loaded");
+                    if ("playing" === this.mediaInteractor.state || Chordify.noPlayerSync || this.isCountingOff)
+                        return;
+                    const t = this.$currentChord;
+                    if ("ArrowRight" === e.key || "ArrowLeft" === e.key) {
+                        if (e.preventDefault(),
+                        !(e.metaKey || e.ctrlKey || e.altKey))
+                            if ("edit" === Chordify.songView && Chordify.editJSLoaded) {
+                                const t = "ArrowLeft" === e.key ? $(".chord-edit").prevFirst(".chord") : $(".chord-edit").nextFirst(".chord");
+                                Chordify.edit.openEditTooltip(t)
+                            } else {
+                                const i = "ArrowLeft" === e.key ? t.prevFirst(".chord") : t.nextFirst(".chord");
+                                this.setCurrentChord(i)
+                            }
+                    } else if (!Chordify.diagramsVisible) {
+                        const i = 4 === Chordify.song.barLength ? 720 : 498
+                          , r = window.innerWidth > i ? 4 : 2
+                          , o = Chordify.song.barLength * r + ("ArrowDown" === e.key ? -1 : 0);
+                        if ("ArrowDown" === e.key)
+                            e.preventDefault(),
+                            "edit" === Chordify.songView && Chordify.editJSLoaded ? Chordify.edit.openEditTooltip($(".chord-edit").siblings().eq($(".chord-edit").index() + o).filter(".chord")) : this.setCurrentChord(t.siblings().eq(t.index() + o).filter(".chord"));
+                        else if ("ArrowUp" === e.key)
+                            if ("edit" === Chordify.songView && Chordify.editJSLoaded) {
+                                if ($(".chord-edit").index() <= o - 3)
+                                    return;
+                                e.preventDefault(),
+                                Chordify.edit.openEditTooltip($(".chord-edit").siblings().eq($(".chord-edit").index() - o).filter(".chord"))
+                            } else {
+                                if (t.index() <= o - 3)
+                                    return;
+                                e.preventDefault(),
+                                this.setCurrentChord(t.siblings().eq(t.index() - o).filter(".chord"))
+                            }
+                    }
+                    const i = 0 === $(".chord-edit").length ? $(".currentChord") : $(".chord-edit");
+                    this.scrollToChord(i)
+                }
+                )),
+                m(this, "handleChordClick", (e=>{
+                    if ("touchend" === e.type)
+                        return this.hasTouchMoved ? void (this.hasTouchMoved = !1) : e.stopPropagation();
+                    if (null === e.target)
+                        return;
+                    const t = $(e.target)
+                      , i = t.closest(".chord");
+                    if (0 === i.length || t.closest(".loop-options").length > 0)
+                        return void e.preventDefault();
+                    if ("edit" === Chordify.songView && Chordify.editJSLoaded) {
+                        if (t.closest(".chord-edit-tooltip").length > 0)
+                            return;
+                        return Chordify.edit.openEditTooltip(i),
+                        void ("playing" !== this.mediaInteractor.state && $(".currentChord").removeClass("currentChord"))
+                    }
+                    if ("diagrams" === Chordify.songView && this.scrollToChord(i),
+                    Chordify.noPlayerSync)
+                        return;
+                    const r = Chordify.countOffEnabled;
+                    if (this.isCountingOff && this.cancelCountOff(),
+                    r)
+                        return this.setCurrentChord(i),
+                        void this.startCountOff();
+                    this.playerAction("play", i),
+                    Chordify.dispatchEvent({
+                        chordChange: {
+                            $chord: i,
+                            source: "click"
+                        }
+                    })
+                }
+                )),
+                m(this, "handleChordDragStart", (e=>{
+                    if ("mousedown" === e.type && 0 !== e.button)
+                        return;
+                    if ("touchstart" === e.type && !Chordify.canCreateLoop)
+                        return;
+                    if (null === e.target)
+                        return;
+                    const t = $(e.target).closest(".chord")
+                      , i = $(e.target).attr("href");
+                    if ("#remove" === i)
+                        return Chordify.removeLoop(e),
+                        e.stopPropagation();
+                    if ("#copy" === i)
+                        $(".loop").animate({
+                            opacity: .5
+                        }, "fast", (function() {
+                            $(".loop").animate({
+                                opacity: 1
+                            }, "fast")
+                        }
+                        )),
+                        this.isDragging = !1;
+                    else {
+                        if ("touchstart" === e.type && !t.hasClass("loop-first") && !t.hasClass("loop-last"))
+                            return;
+                        (t.hasClass("chord") && !t.hasClass("loop") || t.hasClass("loop-first") || t.hasClass("loop-last")) && (this.isDragging = !0,
+                        this.hasMoved = !1,
+                        this.$dragStart = t,
+                        this.boundary = null,
+                        t.hasClass("loop-first") ? this.boundary = "first" : t.hasClass("loop-last") && (this.boundary = "last"),
+                        document.onselectstart = function() {
+                            return !1
+                        }
+                        )
+                    }
+                    return "touchstart" === e.type ? e.stopPropagation() : void 0
+                }
+                )),
+                m(this, "handleChordDragMove", (e=>{
+                    if ("touchmove" === e.type && (this.hasTouchMoved = !0),
+                    !Chordify.canCreateLoop || this.hasTouchMoved && !this.isDragging)
+                        return;
+                    if (null === e.target || null === e.originalEvent)
+                        return;
+                    let t;
+                    if (void 0 !== e.originalEvent.touches && void 0 !== e.originalEvent.changedTouches && this.isDragging) {
+                        e.preventDefault();
+                        const i = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]
+                          , r = i.pageX
+                          , o = i.pageY - ($("body").scrollTop() || 0)
+                          , s = document.elementFromPoint(r, o);
+                        t = s ? $(s) : void 0
+                    } else
+                        t = $(e.target).closest(".chord");
+                    if (!t)
+                        return;
+                    if (e.stopPropagation(),
+                    !this.isDragging || !t.hasClass("chord"))
+                        return;
+                    e.preventDefault(),
+                    this.hasMoved = !0;
+                    const i = $("#chords").children();
+                    if ($(".loop-options").remove(),
+                    this.boundary && this.$loopEnd && this.$loopStart)
+                        return "first" === this.boundary && t.index() > this.$loopEnd.index() ? (this.$dragStart = this.$loopEnd,
+                        this.$loopStart.removeClass("loop-first"),
+                        this.$loopStart = this.$loopEnd,
+                        this.$loopStart.addClass("loop-first"),
+                        this.boundary = "last") : "last" === this.boundary && t.index() < this.$loopStart.index() && (this.$dragStart = this.$loopStart,
+                        this.$loopEnd.removeClass("loop-last"),
+                        this.$loopEnd = this.$loopStart,
+                        this.$loopStart.addClass("loop-last"),
+                        this.boundary = "first"),
+                        "first" === this.boundary ? this.$loopStart = t : this.$loopEnd = t,
+                        i.removeClass(`loop loop-${this.boundary}`),
+                        i.slice(this.$loopStart.index(), this.$loopEnd.index() + 1).addClass("loop"),
+                        void t.addClass(`loop-${this.boundary}`);
+                    i.removeClass("loop loop-last loop-first"),
+                    t.index() > this.$dragStart.index() ? t.prevUntil(this.$dragStart).filter(".chord").addClass("loop") : t.index() < this.$dragStart.index() && t.nextUntil(this.$dragStart).filter(".chord").addClass("loop"),
+                    t.addClass("loop"),
+                    this.$dragStart.addClass("loop")
+                }
+                )),
+                m(this, "handleChordsRendered", (e=>{
+                    const t = ()=>Math.round(e.offset()?.top ?? 0);
+                    let i = t();
+                    window.document.addEventListener("ChordifyLibrary", (function(e) {
+                        if (void 0 === e.detail.chordChange)
+                            return;
+                        if ("diagrams" === Chordify.songView)
+                            return;
+                        const r = t()
+                          , o = r - i;
+                        0 !== o && (i = r,
+                        Chordify.setPositions(o))
+                    }
+                    )),
+                    this.setCurrentChord(e.children(".chord").first()),
+                    this.updateSizes()
+                }
+                )),
+                m(this, "handleControlClick", (e=>{
+                    if (void 0 === Chordify.song)
+                        return console.error(new Error("Chordify.song missing"));
+                    "play" === e ? this.togglePlay() : "rewind" === e && this.doRewind()
+                }
+                )),
+                m(this, "handleDragRelease", (e=>{
+                    if (this.isDragging && this.hasMoved) {
+                        if (!($(".loop").length > 1))
+                            return Chordify.removeLoop(e),
+                            e.stopPropagation();
+                        {
+                            $(".loop-options").remove();
+                            const e = $("#chords").children(".loop");
+                            this.$loopStart = e.first().addClass("loop-first"),
+                            this.$loopEnd = e.last().addClass("loop-last"),
+                            this.createLoopOptions(this.$loopEnd),
+                            $("#chords").addClass("chords-loop"),
+                            $(".function-select button").addClass("active"),
+                            Chordify.loop = {
+                                hasLoop: !0,
+                                loopChords: e
+                            },
+                            "edit" !== Chordify.songView && this.playerAction("play", this.$loopStart),
+                            Chordify.dispatchEvent({
+                                loop: {
+                                    enabled: !0,
+                                    end: this.$loopEnd.data("i"),
+                                    start: this.$loopStart.data("i")
+                                }
+                            })
+                        }
+                    }
+                    document.onselectstart = null,
+                    this.isDragging = !1,
+                    this.hasMoved = !1
+                }
+                )),
+                m(this, "handleKeyDown", (e=>{
+                    if (e.target) {
+                        if ("input" === e.target.tagName.toLowerCase() || "textarea" === e.target.tagName.toLowerCase()) {
+                            const t = "edit" === Chordify.songView && (" " === e.key || "Spacebar" === e.key) && $(e.target).hasClass("chord-edit-input")
+                              , i = $(e.target).hasClass("volume-slider") && " " === e.key;
+                            if (!t && !i)
+                                return
+                        }
+                        if ("Enter" === e.key && "edit" === Chordify.songView && Chordify.editJSLoaded)
+                            Chordify.edit.openEditTooltip($(".chord-edit")),
+                            $(".chord-edit-tooltip .icon-edit").click();
+                        else {
+                            if (" " === e.key || "Spacebar" === e.key)
+                                return e.preventDefault(),
+                                this.togglePlay(),
+                                e.stopPropagation();
+                            "ArrowDown" !== e.key && "ArrowLeft" !== e.key && "ArrowRight" !== e.key && "ArrowUp" !== e.key || this.handleArrowKeys(e)
+                        }
+                    }
+                }
+                )),
+                m(this, "handleKeyUp", (e=>{
+                    if ("input" !== e.target.tagName.toLowerCase() && "textarea" !== e.target.tagName.toLowerCase())
+                        return " " === e.key || "Spacebar" === e.key ? (e.preventDefault(),
+                        e.stopPropagation(),
+                        e.stopImmediatePropagation(),
+                        e.stopPropagation()) : void 0
+                }
+                )),
+                m(this, "handlePlayerPreviewDeezer", (()=>Chordify.doWhenChordsLoaded((e=>{
+                    const t = e.chords;
+                    let i = 0
+                      , r = !1;
+                    for (const e in t)
+                        if (t[e].to <= 30 || t[e].from > 62)
+                            t[e].el.css({
+                                backgroundColor: "#ddd",
+                                color: "#aaa"
+                            }).prev(".bar").css("background", "#aaa");
+                        else {
+                            if (!r) {
+                                const i = $(t[e].el);
+                                setTimeout((()=>{
+                                    this.setCurrentChord(i)
+                                }
+                                ), 10),
+                                r = !0
+                            }
+                            i = parseInt(e, 10)
+                        }
+                    const o = $('<div id="deezerNotification" class="max-duration"></div>');
+                    o.html('<span class="icon-deezer" style="display:block;font-size:60pt;line-height:40px;color:#555;"></span><p>Full-length Deezer tracks are only available if you have a <a href="http://www.deezer.com?app_id=114161" target="_blank"> Deezer account</a>.<br/><a href="#" onclick="connectDeezer();return false;" style="font-weight:bold;color:#555;">Connect with Deezer</a></p></div>');
+                    let s = $();
+                    for (const r in t) {
+                        const o = parseInt(r, 10);
+                        if (!(o > i))
+                            continue;
+                        const n = t[o - 1] && t[o - 1].getTop() < t[o].getTop()
+                          , a = o - 1 + 4 * e.barLength < Object.keys(t).length;
+                        if (n && a) {
+                            s = t[o].el;
+                            break
+                        }
+                    }
+                    o.css({
+                        width: ($("#chordsArea").width() || 0) - 50
+                    }).appendTo(s)
+                }
+                )))),
+                m(this, "handlePlayerPreviewRocketSongs", (e=>{
+                    const t = `//www.rocketsongs.com/TrackOwners/RS-artist/Songs/${e.externalid.replace(":c", "")}/RS-song?utm_source=Chordify&amp;utm_medium=Banner&amp;utm_content=Purchase+licensed+version&amp;utm_campaign=Chordify`
+                      , i = $('<div id="rocketsongsNotification" style="background:#ddd;padding: 50px 0;"></div>');
+                    i.html(`<p style="margin: 0 auto;max-width:466px;">You just played along with a Rocket Songs preview clip. In order to play the whole song you need to <a href="${t}" target="_blank">purchase the licensed version at Rocket Songs</a></p>`),
+                    i.appendTo($("#chordsArea"))
+                }
+                )),
+                m(this, "handlePlayerReady", (()=>{
+                    this.isReady = !0,
+                    "1" === (0,
+                    n.XX)("play") && this.mediaInteractor.action({
+                        name: "play"
+                    }),
+                    this.dispatchEvent({
+                        ready: !0
+                    })
+                }
+                )),
+                m(this, "handlePlayerPause", (()=>{
+                    $("#song").removeClass("playing"),
+                    "edit" === Chordify.songView && $(".chord-edit").length > 0 && this.setCurrentChord($(".chord-edit")),
+                    this.playTime += this.getPlayDuration() ?? 0,
+                    this.playTS = null,
+                    this.dispatchEvent({
+                        event: "pause"
+                    })
+                }
+                )),
+                m(this, "handlePlayerPlay", (()=>{
+                    $("#song").addClass("playing"),
+                    window.innerWidth < 930 && window.innerHeight < 600 && $("body").addClass("collapsed"),
+                    this.playTS = Date.now(),
+                    this.dispatchEvent({
+                        event: "play"
+                    })
+                }
+                )),
+                m(this, "handlePlayerPulse", (({currentTime: e})=>{
+                    if (!Chordify.chordsLoaded || Chordify.noPlayerSync)
+                        return;
+                    (this.getPlayDuration() ?? 0) / 1e3 >= 30 && !this.play30Dispatched && (this.play30Dispatched = !0,
+                    this.dispatchEvent({
+                        event: "play30"
+                    }));
+                    const t = this.findNearestChord(e);
+                    if ("Behind" !== t._type && "Ahead" !== t._type)
+                        return;
+                    if (this.currentTime = e,
+                    this.currentChordIndex = t.index,
+                    "Ahead" === t._type)
+                        return void this.setCurrentChord(t.chord.el);
+                    const i = t?.chord;
+                    if (Chordify.loop.hasLoop && this.$currentChord.hasClass("loop-last") && $("body").hasClass("user-premium")) {
+                        this.setCurrentChord(Chordify.loop.loopChords.first()),
+                        Chordify.dispatchEvent({
+                            chordChange: {
+                                $chord: this.$currentChord,
+                                source: "loop"
+                            }
+                        });
+                        const e = Chordify.song.chords[this.$currentChord.data("i")].from;
+                        return this.mediaInteractor.action({
+                            name: "play",
+                            seekTo: e
+                        }),
+                        void this.scrollToChord(this.$currentChord)
+                    }
+                    if (void 0 === i)
+                        return;
+                    Chordify.dispatchEvent({
+                        chordChange: {
+                            $chord: i.el,
+                            source: "pulse"
+                        }
+                    }),
+                    this.setCurrentChord(i.el);
+                    const r = this.nextChordThreshold(i);
+                    if (!Chordify.diagramsVisible && r > this.scrollAreaHeight && $("html,body").stop().animate({
+                        scrollTop: window.scrollY + 2 * this.chordHeight
+                    }),
+                    "diagrams" === Chordify.songView) {
+                        if ((i.el.offset()?.left ?? 0) < 60)
+                            return;
+                        1 === i.beat && this.scrollToChord(i.el)
+                    }
+                    this.adjustChordScrollForLyrics(e, i, r)
+                }
+                )),
+                m(this, "handlePlayerStop", (()=>{
+                    $("#song").removeClass("playing");
+                    const e = $("#chords").children(".chord").first();
+                    this.setCurrentChord(e),
+                    this.scrollToChord(e),
+                    this.playTime += this.getPlayDuration() ?? 0,
+                    this.playTS = null,
+                    this.dispatchEvent({
+                        event: "stop"
+                    })
+                }
+                )),
+                m(this, "handlePlayerError", (()=>{
+                    document.dispatchEvent(new CustomEvent("videoError")),
+                    void 0 !== window.hj && window.hj("tagRecording", ["videoErrorNotification"])
+                }
+                )),
+                m(this, "playerAction", ((e,t)=>{
+                    if ("play" === e && Chordify.dispatchEvent({
+                        chordChange: {
+                            $chord: t ?? this.$currentChord,
+                            source: "play"
+                        }
+                    }),
+                    void 0 === t)
+                        this.mediaInteractor.action({
+                            name: e
+                        });
+                    else if (Chordify.chordsLoaded) {
+                        this.setCurrentChord(t);
+                        const i = Chordify.song.chords[t.data("i")]
+                          , r = i?.from ?? 0;
+                        this.mediaInteractor.action({
+                            name: e,
+                            seekTo: r
+                        })
+                    }
+                }
+                )),
+                m(this, "startCountOff", (()=>{
+                    if (!Chordify.chordsLoaded)
+                        return void console.error(new Error("Chordify.song missing"));
+                    this.dispatchEvent({
+                        event: "play"
+                    });
+                    const e = Chordify.song.chords[this.$currentChord.data("i")];
+                    e && "youtube" === this.type ? (this.mediaInteractor.action({
+                        name: "playHead",
+                        seekTo: e.from
+                    }),
+                    this.mediaInteractor.action({
+                        name: "pause"
+                    })) : e && this.mediaInteractor.action({
+                        name: "pause",
+                        seekTo: e.from
+                    });
+                    let t = Chordify.song.barLength;
+                    const i = 1e3 / (Chordify.song.getSongBPM() / 60);
+                    this.isCountingOff = !0;
+                    const r = document.createElement("div");
+                    r.id = C;
+                    const o = document.createElement("div");
+                    o.className = "coc-number",
+                    o.innerHTML = t.toString(),
+                    r.appendChild(o),
+                    document.body.appendChild(r);
+                    const s = window.setInterval((()=>{
+                        if (t -= 1,
+                        0 === t)
+                            return this.stopCountOff(),
+                            void this.playerAction("play");
+                        o && Chordify.song && (o.innerHTML = t.toString()),
+                        this.playMetronome(!1)
+                    }
+                    ), i);
+                    this.playMetronome(!0),
+                    this.countOffInterval = s
+                }
+                )),
+                m(this, "stopCountOff", (()=>{
+                    this.isCountingOff = !1,
+                    window.clearInterval(this.countOffInterval),
+                    document.getElementById(C)?.remove()
+                }
+                )),
+                m(this, "cancelCountOff", (()=>{
+                    this.dispatchEvent({
+                        event: "pause"
+                    }),
+                    this.stopCountOff()
+                }
+                )),
+                m(this, "metronomeAccent", void 0),
+                m(this, "metronome", void 0),
+                m(this, "loadMetronome", (()=>{
+                    delete this.metronomeAccent,
+                    delete this.metronome,
+                    this.metronomeAccent = new Audio("/audio/click_c5.mp3"),
+                    this.metronome = new Audio("/audio/click_c4.mp3"),
+                    this.metronomeAccent.volume = .5,
+                    this.metronome.volume = .5
+                }
+                )),
+                m(this, "nextChordThreshold", (e=>{
+                    const t = null !== document.getElementById("campaign_banner")
+                      , i = null !== document.getElementById("transparentInner")
+                      , r = t && i
+                      , o = Chordify.isPremium || !i || r || window.innerHeight < 700 ? window.scrollY : window.scrollY - 250;
+                    return e.getTop() - o + 2 * this.chordHeight
+                }
+                )),
+                m(this, "playMetronome", (e=>{
+                    this.loadMetronome();
+                    const t = e ? this.metronomeAccent : this.metronome;
+                    void 0 !== t ? t.play() : console.error("Missing metronome sound")
+                }
+                )),
+                m(this, "jingleBells", void 0),
+                m(this, "playJingleBell", (()=>{
+                    this.jingleBells || (this.jingleBells = new Audio("/audio/jingle-bells-3.mp3?42"),
+                    this.jingleBells.volume = .3),
+                    this.jingleBells.currentTime = 0,
+                    this.jingleBells.paused && this.jingleBells.play()
+                }
+                )),
+                m(this, "jingleBellOnChord", (()=>{
+                    Chordify.jingleBellsEnabled && this.playJingleBell()
+                }
+                )),
+                m(this, "scrollToChord", (e=>{
+                    if (!Chordify.chordsLoaded)
+                        return console.error("Chords not loaded");
+                    if (!e || 0 === e.length)
+                        return;
+                    if (Chordify.diagramsVisible) {
+                        const t = (e.offset()?.left ?? 0) - ($("#chords").offset()?.left ?? 0)
+                          , i = 9
+                          , r = function(e, t, i) {
+                            const {innerHeight: r, innerWidth: o} = e
+                              , s = o > r;
+                            return 3 === t ? !(s && o <= 630 || o <= 498) : !(o <= 720 || s && r <= 590 && o <= 850 || i && o >= 990 && o <= 1200)
+                        }(window, Chordify.song.barLength, Chordify.hasWideChords) ? e.outerWidth() * Chordify.song.barLength + 2 * i : i
+                          , o = $("#chords").scrollLeft() + t - r;
+                        return void ($("#chords")[0].scrollLeft = o)
+                    }
+                    if (!Chordify.song.chords[e.data("i")])
+                        return;
+                    const t = Chordify.song.chords[e.data("i")].getTop();
+                    if (!(t < 60 || this.isEmbed && t < 100))
+                        if (t + 2 * this.chordHeight - window.scrollY > this.scrollAreaHeight)
+                            $("html,body").stop(!1, !0).animate({
+                                scrollTop: t - this.scrollAreaHeight + 2 * this.chordHeight
+                            }, "fast");
+                        else if (t < window.scrollY + 109) {
+                            const e = ($(".view-chords").offset()?.top ?? 0) - this.chordHeight;
+                            $("html,body").stop(!1, !0).animate({
+                                scrollTop: e
+                            }, "fast")
+                        }
+                }
+                )),
+                m(this, "setCurrentChord", (e=>{
+                    Chordify.chordsLoaded && e.hasClass("chord") && (void 0 !== this.$currentChord && 0 !== this.$currentChord.length && (this.$currentChord[0].className = this.$currentChord[0].className.replace("currentChord", ""),
+                    this.rerenderElementSafari(this.$currentChord)),
+                    Chordify.noPlayerSync || (this.currentChordIndex = e.data("i") || 0,
+                    e[0].className += " currentChord",
+                    this.rerenderElementSafari(e),
+                    this.$currentChord = e))
+                }
+                )),
+                m(this, "rerenderElementSafari", (e=>{
+                    b && e[0] && (e.css("opacity", .99),
+                    setTimeout((function() {
+                        e.css("opacity", 1)
+                    }
+                    ), 20))
+                }
+                )),
+                m(this, "doRewind", (()=>{
+                    this.setCurrentChord($("#chords").children(".chord").first()),
+                    this.currentTime = 0;
+                    const e = (this.isCountingOff || "playing" === this.mediaInteractor.state) && Chordify.countOffEnabled && "edit" !== Chordify.songView;
+                    this.isCountingOff && this.cancelCountOff(),
+                    e ? this.startCountOff() : this.mediaInteractor.action({
+                        name: "playHead",
+                        seekTo: 0
+                    }),
+                    Chordify.diagramsVisible ? $("#chords").stop().animate({
+                        scrollLeft: 0
+                    }) : $("html,body").stop().animate({
+                        scrollTop: 0
+                    })
+                }
+                )),
+                m(this, "togglePlay", (()=>{
+                    if (!Chordify.chordsLoaded)
+                        return console.warn("Chords not loaded");
+                    const e = "playing" === this.mediaInteractor.state || this.isCountingOff ? "pause" : "play";
+                    if (Chordify.noPlayerSync)
+                        return this.playerAction(e);
+                    if ("edit" !== Chordify.songView || "play" !== e)
+                        "play" === e && this.scrollToChord(this.$currentChord),
+                        "play" === e && Chordify.countOffEnabled && !1 === this.isCountingOff ? this.startCountOff() : (this.isCountingOff && this.cancelCountOff(),
+                        this.playerAction(e, this.$currentChord));
+                    else {
+                        const e = $(".chord-edit")
+                          , t = 0 === e.length ? this.$currentChord : e;
+                        this.playerAction("play", t)
+                    }
+                }
+                )),
+                m(this, "updateSizes", (()=>{
+                    if (Chordify.diagramsVisible)
+                        return;
+                    this.scrollAreaHeight = window.innerHeight,
+                    (window.innerWidth < 990 && window.innerHeight > 590 || this.isEmbed) && (this.scrollAreaHeight -= 200);
+                    const e = this.$currentChord || $("#chords .chord").first();
+                    this.chordHeight = e.outerHeight() || 0,
+                    this.scrollAreaTop = ($("#chordsArea").offset() || {}).top || 0
+                }
+                )),
+                m(this, "initializePlayer", (()=>{
+                    this.initializePlayerCalled || (this.initializePlayerCalled = !0,
+                    this.mediaInteractor.initialize())
+                }
+                )),
+                this.$currentChord = $(),
+                this.$dragStart = $(),
+                this.$scrollArea = $(window),
+                this.isEmbed = self.location.pathname.indexOf("/embed/") >= 0,
+                this.type = e.type,
+                this.$scrollArea.resize(this.updateSizes),
+                this.updateSizes();
+                const t = (t=>{
+                    switch (t) {
+                    case "youtube":
+                        return new v(e);
+                    case "deezer":
+                        return new y($(".jplayer"),e);
+                    default:
+                        return new p($(".jplayer"),t,e)
+                    }
+                }
+                )(e.type);
+                this.mediaInteractor = t,
+                ("youtube" !== e.type || this.isEmbed) && this.initializePlayer(),
+                t.on("pause", this.handlePlayerPause),
+                t.on("play", this.handlePlayerPlay),
+                t.on("preview", this.handlePlayerPreviewDeezer),
+                t.on("pulse", this.handlePlayerPulse),
+                t.on("ready", this.handlePlayerReady),
+                t.on("stop", this.handlePlayerStop),
+                t.on("error", this.handlePlayerError),
+                $("#chords").on("click touchend", this.handleChordClick).on("mousedown touchstart", this.handleChordDragStart).on("mouseover touchmove", this.handleChordDragMove),
+                $("body").on("mouseup touchend", this.handleDragRelease),
+                $(document).on("keyup keypress", this.handleKeyUp),
+                $(document).keydown(this.handleKeyDown),
+                this.action = e=>t.action(e),
+                this.currentTime = t.currentTime || 0,
+                this.isReady = t.isReady,
+                this.on = (e,i)=>t.on(e, i),
+                this.speeds = t.speeds,
+                this.state = t.state,
+                "rocketsongs" === e.type && this.handlePlayerPreviewRocketSongs(e),
+                Chordify.chordsLoaded && this.handleChordsRendered($("#song").find("#chords"))
+            }
+            findNearestChord(e) {
+                if (!Chordify.chordsLoaded)
+                    return console.error(new Error("Chordify.song missing")),
+                    {
+                        _type: "NoChords"
+                    };
+                const t = Chordify.song.chords;
+                let i = this.currentChordIndex
+                  , r = t[i + 1];
+                if (void 0 === r)
+                    return {
+                        _type: "NotFound"
+                    };
+                const o = i > 1 && e + .5 < t[i].from;
+                if (!o && e + .1 < r.from)
+                    return {
+                        _type: "NoJump"
+                    };
+                if (o) {
+                    for (; e + .1 < t[i].from; )
+                        if (void 0 === t[--i]) {
+                            i++;
+                            break
+                        }
+                    return r = t[i],
+                    void 0 === r ? {
+                        _type: "NotFound"
+                    } : {
+                        _type: "Ahead",
+                        chord: r,
+                        index: i
+                    }
+                }
+                for (i++; void 0 !== t[i] && void 0 !== r && e + .1 >= r.to; )
+                    r = t[++i];
+                return void 0 === r ? {
+                    _type: "NotFound"
+                } : {
+                    _type: "Behind",
+                    chord: r,
+                    index: i
+                }
+            }
+        }
+        ,
+        window.ChordifySong = d
+    }
+    )(),
+    (()=>{
+        "use strict";
+        var e = r(6538);
+        !function(e) {
+            e.fn.nextFirst = function(t) {
+                var i = e(this).next();
+                return i.is(t) || (i = i.next()),
+                i
+            }
+            ,
+            e.fn.prevFirst = function(t) {
+                var i = e(this).prev();
+                return i.is(t) || (i = i.prev()),
+                i
+            }
+        }(jQuery),
+        window.Chordify = new ChordifyLibrary(window.chordifyLibraryProps);
+        var t = !1;
+        Chordify.doWhenReactRendered((function() {
+            var i = $("body");
+            Chordify.player = new ChordifyPlayer($("#song").data());
+            var r = !1
+              , o = Chordify.player.on("pulse", (function() {
+                r = !0,
+                o()
+            }
+            ));
+            if (Chordify.player.on("pause", (function() {
+                var e, i, o;
+                r && (i = $("body").hasClass("has-campaign-popup"),
+                o = "unstarted" === window.Chordify.player?.player?.state,
+                !($("body").hasClass("user-premium") || t || Chordify.player.isEmbed || o || (getCookie("puc") ? "Desktop" == $("body").data("device") || (function() {
+                    t = !0;
+                    var e = $("body")
+                      , i = "iPhone" === e.data("device")
+                      , r = "&referrer=utm_source%3Dchordify%26utm_medium%3D=website%26utm_term%3Dsongpopup"
+                      , o = i ? "https://itunes.apple.com/app/chordify-tune-into-chords/id1073624757" : `https://play.google.com/store/apps/details?id=net.chordify.chordify ${r}`;
+                    if (e.hasClass("forceToApp")) {
+                        var s = "https://chordify.net" + window.location.pathname
+                          , n = "install_app";
+                        o = i ? "https://asz79.app.goo.gl/xLw7?link=" + s + "&ibi=net.chordify.Chordify&isi=1073624757&efr=1&apn=net.chordify.chordify&pt=103410801&mt=8&ct=" + n : "https://asz79.app.goo.gl/xLw7?link=" + s + "&apn=net.chordify.chordify&isi=1073624757&ibi=net.chordify.Chordify&cid=8883000784820545941&_fpb=CJsFEPcCGgJlcw==&_cpt=cpit&_iumenbl=1&_iumchkactval=1&_plt=845&_uit=2335&_cpb=1" + r + "%26utm_campaign%3D" + n
+                    }
+                    var a = $("body").data("device")
+                      , d = Lang.chordify_for.replace("%s", a);
+                    showPopup('<a class="app-banner" rel="nofollow" href="' + o + '" style="margin: -27px -10px -10px -10px"><div class="app-banner-inner"><h3 style="color:white;text-shadow:none;font-size:20pt;max-width:360px;margin:50px auto 0 auto;">' + Lang.groovier_app + '</h3><span class="button-premium" style="margin: 20px auto;background:#35d49f">' + Lang.get_the_app + "</span><br/>" + d + '<br><div class="smartbanner-stars-image"></div></div></a>', {}),
+                    $(".popup .icon-close").css({
+                        position: "relative",
+                        color: "white",
+                        zIndex: 100,
+                        fontSize: 22,
+                        margin: "-4px 0 -4px -8px",
+                        padding: 4
+                    }),
+                    $(".popup").click((function(e) {
+                        $(e.target).hasClass("popup") && $(".popup .icon-close").click()
+                    }
+                    ))
+                }(),
+                0) : (i ? document.dispatchEvent(new CustomEvent("showCampaignPopup")) : (e = "/img/premium/Save_50_percent_2019_popup_" + Lang.LANG_HANDLE + ".jpg",
+                showPopup('<a href="/premium?utm_source=Chordify%20website&amp;utm_medium=songpage_popup&amp;utm_campaign=Save%2050%20Percent" style="border:0;margin:-27px -10px -10px -10px;display:block;overflow:hidden;"><img src="' + e + '" style="border:0;display:block;width:100%" /></a>', {
+                    maxWidth: 500
+                }),
+                $(".popup .icon-close").css({
+                    position: "relative",
+                    color: "white",
+                    zIndex: 100,
+                    fontSize: 22,
+                    margin: "-4px -30px -4px -8px",
+                    padding: 4
+                })),
+                setCookie("puc", 1, 3600),
+                0)))) && (t = !0)
+            }
+            )),
+            (0,
+            e.XX)("jingle-bells") && Chordify.toggleJingleBell(!0),
+            $(".chordlang-latin").length >= 1 ? Chordify.chordLang = "latin" : $(".chordlang-german").length >= 1 && (Chordify.chordLang = "german"),
+            !Chordify.dzSupport && -1 == location.pathname.indexOf("/embed/") && -1 == location.pathname.indexOf("/print/")) {
+                var s = parseInt(getCookie("dzSupport"), 10);
+                i.hasClass("signedin") && s && (Chordify.dzSupport = !0,
+                i.addClass("supports-deezer"),
+                expireCookie("dzSupport"),
+                $.get("/user/supportDeezer"))
+            }
+        }
+        ))
+    }
+    )(),
+    o = r.O(o)
+}
+)();
+//# sourceMappingURL=song-lgc-bundle.js.map
